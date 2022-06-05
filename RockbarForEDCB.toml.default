@@ -1,0 +1,17 @@
+UseTcpIp = false
+IpAddress = ""
+PortNumber = 4510
+UseWebLink = true
+WebLinkUrl = "http://localhost:5510/epginfo.html?onid={ONID}&tsid={TSID}&sid={SID}&eid={EID}"
+TvtestPath = ""
+TvtestBscsOption = ""
+TvtestDttvOption = ""
+UseDoubleClickTvtest = false
+IsAutoOpenTvtest = false
+IsAutoOpenTvtestDttv = false
+IsAutoOpenTvtestBs = false
+IsAutoOpenTvtestCs = false
+IsAutoOpenTvtestFavoriteService = false
+AutoOpenMargin = 15
+AutoCloseMargin = 5
+ShowTaskTrayIcon = true
