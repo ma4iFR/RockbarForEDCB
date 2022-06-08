@@ -59,7 +59,15 @@ namespace RockbarForEDCB
     {
         public RockBarSetting()
         {
+            // デフォルト設定
             // 数値系は0初期化・bool系はfalse初期化・stringはnull初期化。設定が必要な箇所だけ設定する
+
+            this.PortNumber = 4510;
+            this.UseWebLink = true;
+            this.WebLinkUrl = "http://localhost:5510/epginfo.html?onid={ONID}&tsid={TSID}&sid={SID}&eid={EID}";
+            this.AutoOpenMargin = 15;
+            this.AutoCloseMargin = 5;
+            this.ShowTaskTrayIcon = true;
 
             TypeConverter fontConverter = TypeDescriptor.GetConverter(typeof(Font));
             this.Font = fontConverter.ConvertToString(SystemFonts.DefaultFont);

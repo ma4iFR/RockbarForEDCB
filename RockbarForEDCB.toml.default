@@ -15,3 +15,12 @@ IsAutoOpenTvtestFavoriteService = false
 AutoOpenMargin = 15
 AutoCloseMargin = 5
 ShowTaskTrayIcon = true
+StoreTaskTrayByClosing = false
+ToggleVisibleTaskTrayIconClick = false
+IsHorizontalSplit = false
+Font = "MS UI Gothic, 9pt"
+FormBackColor = "163, 216, 232"
+ListBackColor = "40, 40, 40"
+ForeColor = "25, 250, 140"
+
+[BonDriverNameToTunerName]
