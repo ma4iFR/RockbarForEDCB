@@ -33,21 +33,21 @@ namespace RockbarForEDCB
             this.cancelButton = new System.Windows.Forms.Button();
             this.applyButton = new System.Windows.Forms.Button();
             this.allServiceListView = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.allServiceMarkColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.allServiceTypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.allServiceNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.allServiceTsidColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.allServiceSidColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addSelectedServiceButton = new System.Windows.Forms.Button();
             this.removeSelectedServiceButton = new System.Windows.Forms.Button();
             this.moveDownSelectedServiceButton = new System.Windows.Forms.Button();
             this.moveUpSelectedServiceButton = new System.Windows.Forms.Button();
             this.selectedServiceListView = new System.Windows.Forms.ListView();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectedServiceMarkColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectedServiceTypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectedServiceNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectedServiceTsidColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectedServiceSidColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.settingTabControl = new System.Windows.Forms.TabControl();
             this.edcbLinkageTabPage = new System.Windows.Forms.TabPage();
             this.portNumberNoteLabel = new System.Windows.Forms.Label();
@@ -62,29 +62,32 @@ namespace RockbarForEDCB
             this.ipAddressTextBox = new System.Windows.Forms.TextBox();
             this.webLinkUrlTextBox = new System.Windows.Forms.TextBox();
             this.allServiceTabPage = new System.Windows.Forms.TabPage();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.selectedServiceListLabel = new System.Windows.Forms.Label();
+            this.allServiceListLabel = new System.Windows.Forms.Label();
             this.favoriteServiceTabPage = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.favoriteServiceListLabel = new System.Windows.Forms.Label();
+            this.selectedServiceList2Label = new System.Windows.Forms.Label();
             this.selectedServiceListView2 = new System.Windows.Forms.ListView();
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectedService2MarkColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectedService2TypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectedService2NameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectedService2TsidColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectedService2SidColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.moveUpFavoriteServiceButton = new System.Windows.Forms.Button();
             this.moveDownFavoriteServiceButton = new System.Windows.Forms.Button();
             this.removeFavoriteServiceButton = new System.Windows.Forms.Button();
             this.favoriteServiceListView = new System.Windows.Forms.ListView();
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.favoriteServiceMarkColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.favoriteServiceTypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.favoriteServiceNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.favoriteServiceTsidColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.favoriteServiceSidColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addFavoriteServiceButton = new System.Windows.Forms.Button();
             this.tvtestLinkageTabPage = new System.Windows.Forms.TabPage();
+            this.tvtestDttvOptionExampleLabel = new System.Windows.Forms.Label();
+            this.tvtestBscsOptionExampleLabel = new System.Windows.Forms.Label();
             this.autoStartTargetGroupBox = new System.Windows.Forms.GroupBox();
+            this.isAutoOpenFavoriteServiceCheckBox = new System.Windows.Forms.CheckBox();
             this.isAutoOpenDttvCheckBox = new System.Windows.Forms.CheckBox();
             this.isAutoOpenCsCheckBox = new System.Windows.Forms.CheckBox();
             this.isAutoOpenBsCheckBox = new System.Windows.Forms.CheckBox();
@@ -93,7 +96,7 @@ namespace RockbarForEDCB
             this.autoOpenMarginNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.autoOpenMarginLabel = new System.Windows.Forms.Label();
             this.isAutoOpenTvtestCheckBox = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.tvTestNoteLabel = new System.Windows.Forms.Label();
             this.useDoubleClickTvtestCheckBox = new System.Windows.Forms.CheckBox();
             this.tvtestDttvOptionLabel = new System.Windows.Forms.Label();
             this.tvtestDttvOptionTextBox = new System.Windows.Forms.TextBox();
@@ -102,12 +105,40 @@ namespace RockbarForEDCB
             this.tvtestPathLabel = new System.Windows.Forms.Label();
             this.tvtestOpenButton = new System.Windows.Forms.Button();
             this.tvtestPathTextBox = new System.Windows.Forms.TextBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.otherTabPage = new System.Windows.Forms.TabPage();
+            this.colorPreviewLabel = new System.Windows.Forms.Label();
+            this.selectForeColorLabel = new System.Windows.Forms.Label();
+            this.foreColorTextBox = new System.Windows.Forms.TextBox();
+            this.selectForeColorButton = new System.Windows.Forms.Button();
+            this.listBackColorLabel = new System.Windows.Forms.Label();
+            this.listBackColorTextBox = new System.Windows.Forms.TextBox();
+            this.selectListBackColorButton = new System.Windows.Forms.Button();
+            this.formBackColorPanel = new System.Windows.Forms.Panel();
+            this.listBackColorPanel = new System.Windows.Forms.Panel();
+            this.foreColorLabel = new System.Windows.Forms.Label();
+            this.formBackColorLabel = new System.Windows.Forms.Label();
+            this.formBackColorTextBox = new System.Windows.Forms.TextBox();
+            this.selectFormBackColorButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.isHorizontalSplitCheckBox = new System.Windows.Forms.CheckBox();
+            this.fontTextBox = new System.Windows.Forms.TextBox();
+            this.selectFontButton = new System.Windows.Forms.Button();
+            this.toggleVisibleTaskTrayIconClickCheckBox = new System.Windows.Forms.CheckBox();
+            this.storeTaskTrayByClosingCheckBox = new System.Windows.Forms.CheckBox();
             this.showTaskTraiIconCheckBox = new System.Windows.Forms.CheckBox();
             this.tvtestOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.isAutoOpenFavoriteServiceCheckBox = new System.Windows.Forms.CheckBox();
-            this.tvtestBscsOptionExampleLabel = new System.Windows.Forms.Label();
-            this.tvtestDttvOptionExampleLabel = new System.Windows.Forms.Label();
+            this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.tunerTabPage = new System.Windows.Forms.TabPage();
+            this.tunerNameListView = new System.Windows.Forms.ListView();
+            this.tunerNameTunerIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tunerNameBonDriverNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tunerNameTunerNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tunerNameTextBox = new System.Windows.Forms.TextBox();
+            this.updateTunerNameButton = new System.Windows.Forms.Button();
+            this.tunerNameNoteLabel = new System.Windows.Forms.Label();
+            this.tunerNameLabel = new System.Windows.Forms.Label();
+            this.tunerNameMarkColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.settingTabControl.SuspendLayout();
             this.edcbLinkageTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.portNumberNumericUpDown)).BeginInit();
@@ -117,7 +148,10 @@ namespace RockbarForEDCB
             this.autoStartTargetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.autoCloseMarginNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoOpenMarginNumericUpDown)).BeginInit();
-            this.tabPage1.SuspendLayout();
+            this.otherTabPage.SuspendLayout();
+            this.formBackColorPanel.SuspendLayout();
+            this.listBackColorPanel.SuspendLayout();
+            this.tunerTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -143,11 +177,11 @@ namespace RockbarForEDCB
             // allServiceListView
             // 
             this.allServiceListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
+            this.allServiceMarkColumnHeader,
+            this.allServiceTypeColumnHeader,
+            this.allServiceNameColumnHeader,
+            this.allServiceTsidColumnHeader,
+            this.allServiceSidColumnHeader});
             this.allServiceListView.FullRowSelect = true;
             this.allServiceListView.HideSelection = false;
             this.allServiceListView.Location = new System.Drawing.Point(8, 26);
@@ -156,29 +190,30 @@ namespace RockbarForEDCB
             this.allServiceListView.TabIndex = 0;
             this.allServiceListView.UseCompatibleStateImageBehavior = false;
             this.allServiceListView.View = System.Windows.Forms.View.Details;
+            this.allServiceListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.allServiceListView_ColumnClick);
             // 
-            // columnHeader5
+            // allServiceMarkColumnHeader
             // 
-            this.columnHeader5.Text = "";
-            this.columnHeader5.Width = 20;
+            this.allServiceMarkColumnHeader.Text = "";
+            this.allServiceMarkColumnHeader.Width = 20;
             // 
-            // columnHeader1
+            // allServiceTypeColumnHeader
             // 
-            this.columnHeader1.Text = "種類";
-            this.columnHeader1.Width = 40;
+            this.allServiceTypeColumnHeader.Text = "種類";
+            this.allServiceTypeColumnHeader.Width = 40;
             // 
-            // columnHeader2
+            // allServiceNameColumnHeader
             // 
-            this.columnHeader2.Text = "名前";
-            this.columnHeader2.Width = 130;
+            this.allServiceNameColumnHeader.Text = "名前";
+            this.allServiceNameColumnHeader.Width = 130;
             // 
-            // columnHeader3
+            // allServiceTsidColumnHeader
             // 
-            this.columnHeader3.Text = "TSID";
+            this.allServiceTsidColumnHeader.Text = "TSID";
             // 
-            // columnHeader4
+            // allServiceSidColumnHeader
             // 
-            this.columnHeader4.Text = "SID";
+            this.allServiceSidColumnHeader.Text = "SID";
             // 
             // addSelectedServiceButton
             // 
@@ -223,11 +258,11 @@ namespace RockbarForEDCB
             // selectedServiceListView
             // 
             this.selectedServiceListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10});
+            this.selectedServiceMarkColumnHeader,
+            this.selectedServiceTypeColumnHeader,
+            this.selectedServiceNameColumnHeader,
+            this.selectedServiceTsidColumnHeader,
+            this.selectedServiceSidColumnHeader});
             this.selectedServiceListView.FullRowSelect = true;
             this.selectedServiceListView.HideSelection = false;
             this.selectedServiceListView.Location = new System.Drawing.Point(405, 26);
@@ -236,37 +271,39 @@ namespace RockbarForEDCB
             this.selectedServiceListView.TabIndex = 1;
             this.selectedServiceListView.UseCompatibleStateImageBehavior = false;
             this.selectedServiceListView.View = System.Windows.Forms.View.Details;
+            this.selectedServiceListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.selectedServiceListView_ColumnClick);
             // 
-            // columnHeader6
+            // selectedServiceMarkColumnHeader
             // 
-            this.columnHeader6.Text = "";
-            this.columnHeader6.Width = 20;
+            this.selectedServiceMarkColumnHeader.Text = "";
+            this.selectedServiceMarkColumnHeader.Width = 20;
             // 
-            // columnHeader7
+            // selectedServiceTypeColumnHeader
             // 
-            this.columnHeader7.Text = "種類";
-            this.columnHeader7.Width = 40;
+            this.selectedServiceTypeColumnHeader.Text = "種類";
+            this.selectedServiceTypeColumnHeader.Width = 40;
             // 
-            // columnHeader8
+            // selectedServiceNameColumnHeader
             // 
-            this.columnHeader8.Text = "名前";
-            this.columnHeader8.Width = 130;
+            this.selectedServiceNameColumnHeader.Text = "名前";
+            this.selectedServiceNameColumnHeader.Width = 130;
             // 
-            // columnHeader9
+            // selectedServiceTsidColumnHeader
             // 
-            this.columnHeader9.Text = "TSID";
+            this.selectedServiceTsidColumnHeader.Text = "TSID";
             // 
-            // columnHeader10
+            // selectedServiceSidColumnHeader
             // 
-            this.columnHeader10.Text = "SID";
+            this.selectedServiceSidColumnHeader.Text = "SID";
             // 
             // settingTabControl
             // 
             this.settingTabControl.Controls.Add(this.edcbLinkageTabPage);
+            this.settingTabControl.Controls.Add(this.tunerTabPage);
             this.settingTabControl.Controls.Add(this.allServiceTabPage);
             this.settingTabControl.Controls.Add(this.favoriteServiceTabPage);
             this.settingTabControl.Controls.Add(this.tvtestLinkageTabPage);
-            this.settingTabControl.Controls.Add(this.tabPage1);
+            this.settingTabControl.Controls.Add(this.otherTabPage);
             this.settingTabControl.Location = new System.Drawing.Point(1, 3);
             this.settingTabControl.Name = "settingTabControl";
             this.settingTabControl.SelectedIndex = 0;
@@ -407,8 +444,8 @@ namespace RockbarForEDCB
             // 
             // allServiceTabPage
             // 
-            this.allServiceTabPage.Controls.Add(this.label7);
-            this.allServiceTabPage.Controls.Add(this.label4);
+            this.allServiceTabPage.Controls.Add(this.selectedServiceListLabel);
+            this.allServiceTabPage.Controls.Add(this.allServiceListLabel);
             this.allServiceTabPage.Controls.Add(this.allServiceListView);
             this.allServiceTabPage.Controls.Add(this.moveUpSelectedServiceButton);
             this.allServiceTabPage.Controls.Add(this.moveDownSelectedServiceButton);
@@ -423,28 +460,28 @@ namespace RockbarForEDCB
             this.allServiceTabPage.Text = "選択チャンネル";
             this.allServiceTabPage.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // selectedServiceListLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(403, 10);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 12);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "選択チャンネル";
+            this.selectedServiceListLabel.AutoSize = true;
+            this.selectedServiceListLabel.Location = new System.Drawing.Point(403, 10);
+            this.selectedServiceListLabel.Name = "selectedServiceListLabel";
+            this.selectedServiceListLabel.Size = new System.Drawing.Size(75, 12);
+            this.selectedServiceListLabel.TabIndex = 9;
+            this.selectedServiceListLabel.Text = "選択チャンネル";
             // 
-            // label4
+            // allServiceListLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 12);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "全チャンネル";
+            this.allServiceListLabel.AutoSize = true;
+            this.allServiceListLabel.Location = new System.Drawing.Point(6, 10);
+            this.allServiceListLabel.Name = "allServiceListLabel";
+            this.allServiceListLabel.Size = new System.Drawing.Size(63, 12);
+            this.allServiceListLabel.TabIndex = 8;
+            this.allServiceListLabel.Text = "全チャンネル";
             // 
             // favoriteServiceTabPage
             // 
-            this.favoriteServiceTabPage.Controls.Add(this.label9);
-            this.favoriteServiceTabPage.Controls.Add(this.label8);
+            this.favoriteServiceTabPage.Controls.Add(this.favoriteServiceListLabel);
+            this.favoriteServiceTabPage.Controls.Add(this.selectedServiceList2Label);
             this.favoriteServiceTabPage.Controls.Add(this.selectedServiceListView2);
             this.favoriteServiceTabPage.Controls.Add(this.moveUpFavoriteServiceButton);
             this.favoriteServiceTabPage.Controls.Add(this.moveDownFavoriteServiceButton);
@@ -459,32 +496,32 @@ namespace RockbarForEDCB
             this.favoriteServiceTabPage.Text = "お気に入りチャンネル";
             this.favoriteServiceTabPage.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // favoriteServiceListLabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(403, 11);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(102, 12);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "お気に入りチャンネル";
+            this.favoriteServiceListLabel.AutoSize = true;
+            this.favoriteServiceListLabel.Location = new System.Drawing.Point(403, 11);
+            this.favoriteServiceListLabel.Name = "favoriteServiceListLabel";
+            this.favoriteServiceListLabel.Size = new System.Drawing.Size(102, 12);
+            this.favoriteServiceListLabel.TabIndex = 15;
+            this.favoriteServiceListLabel.Text = "お気に入りチャンネル";
             // 
-            // label8
+            // selectedServiceList2Label
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 11);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 12);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "選択チャンネル";
+            this.selectedServiceList2Label.AutoSize = true;
+            this.selectedServiceList2Label.Location = new System.Drawing.Point(7, 11);
+            this.selectedServiceList2Label.Name = "selectedServiceList2Label";
+            this.selectedServiceList2Label.Size = new System.Drawing.Size(75, 12);
+            this.selectedServiceList2Label.TabIndex = 14;
+            this.selectedServiceList2Label.Text = "選択チャンネル";
             // 
             // selectedServiceListView2
             // 
             this.selectedServiceListView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader16,
-            this.columnHeader17,
-            this.columnHeader18,
-            this.columnHeader19,
-            this.columnHeader20});
+            this.selectedService2MarkColumnHeader,
+            this.selectedService2TypeColumnHeader,
+            this.selectedService2NameColumnHeader,
+            this.selectedService2TsidColumnHeader,
+            this.selectedService2SidColumnHeader});
             this.selectedServiceListView2.FullRowSelect = true;
             this.selectedServiceListView2.HideSelection = false;
             this.selectedServiceListView2.Location = new System.Drawing.Point(8, 26);
@@ -493,29 +530,30 @@ namespace RockbarForEDCB
             this.selectedServiceListView2.TabIndex = 0;
             this.selectedServiceListView2.UseCompatibleStateImageBehavior = false;
             this.selectedServiceListView2.View = System.Windows.Forms.View.Details;
+            this.selectedServiceListView2.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.selectedServiceListView2_ColumnClick);
             // 
-            // columnHeader16
+            // selectedService2MarkColumnHeader
             // 
-            this.columnHeader16.Text = "";
-            this.columnHeader16.Width = 20;
+            this.selectedService2MarkColumnHeader.Text = "";
+            this.selectedService2MarkColumnHeader.Width = 20;
             // 
-            // columnHeader17
+            // selectedService2TypeColumnHeader
             // 
-            this.columnHeader17.Text = "種類";
-            this.columnHeader17.Width = 40;
+            this.selectedService2TypeColumnHeader.Text = "種類";
+            this.selectedService2TypeColumnHeader.Width = 40;
             // 
-            // columnHeader18
+            // selectedService2NameColumnHeader
             // 
-            this.columnHeader18.Text = "名前";
-            this.columnHeader18.Width = 130;
+            this.selectedService2NameColumnHeader.Text = "名前";
+            this.selectedService2NameColumnHeader.Width = 130;
             // 
-            // columnHeader19
+            // selectedService2TsidColumnHeader
             // 
-            this.columnHeader19.Text = "TSID";
+            this.selectedService2TsidColumnHeader.Text = "TSID";
             // 
-            // columnHeader20
+            // selectedService2SidColumnHeader
             // 
-            this.columnHeader20.Text = "SID";
+            this.selectedService2SidColumnHeader.Text = "SID";
             // 
             // moveUpFavoriteServiceButton
             // 
@@ -550,11 +588,11 @@ namespace RockbarForEDCB
             // favoriteServiceListView
             // 
             this.favoriteServiceListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14,
-            this.columnHeader15});
+            this.favoriteServiceMarkColumnHeader,
+            this.favoriteServiceTypeColumnHeader,
+            this.favoriteServiceNameColumnHeader,
+            this.favoriteServiceTsidColumnHeader,
+            this.favoriteServiceSidColumnHeader});
             this.favoriteServiceListView.FullRowSelect = true;
             this.favoriteServiceListView.HideSelection = false;
             this.favoriteServiceListView.Location = new System.Drawing.Point(405, 26);
@@ -563,29 +601,30 @@ namespace RockbarForEDCB
             this.favoriteServiceListView.TabIndex = 1;
             this.favoriteServiceListView.UseCompatibleStateImageBehavior = false;
             this.favoriteServiceListView.View = System.Windows.Forms.View.Details;
+            this.favoriteServiceListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.favoriteServiceListView_ColumnClick);
             // 
-            // columnHeader11
+            // favoriteServiceMarkColumnHeader
             // 
-            this.columnHeader11.Text = "";
-            this.columnHeader11.Width = 20;
+            this.favoriteServiceMarkColumnHeader.Text = "";
+            this.favoriteServiceMarkColumnHeader.Width = 20;
             // 
-            // columnHeader12
+            // favoriteServiceTypeColumnHeader
             // 
-            this.columnHeader12.Text = "種類";
-            this.columnHeader12.Width = 40;
+            this.favoriteServiceTypeColumnHeader.Text = "種類";
+            this.favoriteServiceTypeColumnHeader.Width = 40;
             // 
-            // columnHeader13
+            // favoriteServiceNameColumnHeader
             // 
-            this.columnHeader13.Text = "名前";
-            this.columnHeader13.Width = 130;
+            this.favoriteServiceNameColumnHeader.Text = "名前";
+            this.favoriteServiceNameColumnHeader.Width = 130;
             // 
-            // columnHeader14
+            // favoriteServiceTsidColumnHeader
             // 
-            this.columnHeader14.Text = "TSID";
+            this.favoriteServiceTsidColumnHeader.Text = "TSID";
             // 
-            // columnHeader15
+            // favoriteServiceSidColumnHeader
             // 
-            this.columnHeader15.Text = "SID";
+            this.favoriteServiceSidColumnHeader.Text = "SID";
             // 
             // addFavoriteServiceButton
             // 
@@ -607,7 +646,7 @@ namespace RockbarForEDCB
             this.tvtestLinkageTabPage.Controls.Add(this.autoOpenMarginNumericUpDown);
             this.tvtestLinkageTabPage.Controls.Add(this.autoOpenMarginLabel);
             this.tvtestLinkageTabPage.Controls.Add(this.isAutoOpenTvtestCheckBox);
-            this.tvtestLinkageTabPage.Controls.Add(this.label5);
+            this.tvtestLinkageTabPage.Controls.Add(this.tvTestNoteLabel);
             this.tvtestLinkageTabPage.Controls.Add(this.useDoubleClickTvtestCheckBox);
             this.tvtestLinkageTabPage.Controls.Add(this.tvtestDttvOptionLabel);
             this.tvtestLinkageTabPage.Controls.Add(this.tvtestDttvOptionTextBox);
@@ -624,6 +663,24 @@ namespace RockbarForEDCB
             this.tvtestLinkageTabPage.Text = "TVTest連携";
             this.tvtestLinkageTabPage.UseVisualStyleBackColor = true;
             // 
+            // tvtestDttvOptionExampleLabel
+            // 
+            this.tvtestDttvOptionExampleLabel.AutoSize = true;
+            this.tvtestDttvOptionExampleLabel.Location = new System.Drawing.Point(424, 89);
+            this.tvtestDttvOptionExampleLabel.Name = "tvtestDttvOptionExampleLabel";
+            this.tvtestDttvOptionExampleLabel.Size = new System.Drawing.Size(121, 24);
+            this.tvtestDttvOptionExampleLabel.TabIndex = 25;
+            this.tvtestDttvOptionExampleLabel.Text = "(例: 地デジ)\r\n/d BonDriver_PT3_T.dll";
+            // 
+            // tvtestBscsOptionExampleLabel
+            // 
+            this.tvtestBscsOptionExampleLabel.AutoSize = true;
+            this.tvtestBscsOptionExampleLabel.Location = new System.Drawing.Point(424, 52);
+            this.tvtestBscsOptionExampleLabel.Name = "tvtestBscsOptionExampleLabel";
+            this.tvtestBscsOptionExampleLabel.Size = new System.Drawing.Size(121, 24);
+            this.tvtestBscsOptionExampleLabel.TabIndex = 24;
+            this.tvtestBscsOptionExampleLabel.Text = "(例: BS/CS)\r\n/d BonDriver_PT3_S.dll";
+            // 
             // autoStartTargetGroupBox
             // 
             this.autoStartTargetGroupBox.Controls.Add(this.isAutoOpenFavoriteServiceCheckBox);
@@ -636,6 +693,16 @@ namespace RockbarForEDCB
             this.autoStartTargetGroupBox.TabIndex = 6;
             this.autoStartTargetGroupBox.TabStop = false;
             this.autoStartTargetGroupBox.Text = "対象チャンネル";
+            // 
+            // isAutoOpenFavoriteServiceCheckBox
+            // 
+            this.isAutoOpenFavoriteServiceCheckBox.AutoSize = true;
+            this.isAutoOpenFavoriteServiceCheckBox.Location = new System.Drawing.Point(7, 49);
+            this.isAutoOpenFavoriteServiceCheckBox.Name = "isAutoOpenFavoriteServiceCheckBox";
+            this.isAutoOpenFavoriteServiceCheckBox.Size = new System.Drawing.Size(196, 28);
+            this.isAutoOpenFavoriteServiceCheckBox.TabIndex = 9;
+            this.isAutoOpenFavoriteServiceCheckBox.Text = "お気に入りサービスのみ\r\n(地デジ／BS／CS設定との積集合)";
+            this.isAutoOpenFavoriteServiceCheckBox.UseVisualStyleBackColor = true;
             // 
             // isAutoOpenDttvCheckBox
             // 
@@ -729,15 +796,15 @@ namespace RockbarForEDCB
             this.isAutoOpenTvtestCheckBox.Text = "予約時間に合わせてTVTestを自動起動／終了する";
             this.isAutoOpenTvtestCheckBox.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // tvTestNoteLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(100, 123);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(545, 48);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "！！注意！！ \r\nチューナー共有前提です。\r\nチューナー共有していない場合、チューナーを占有してしまうことにより録画が失敗することがあるため注意してください。\r\n" +
+            this.tvTestNoteLabel.AutoSize = true;
+            this.tvTestNoteLabel.ForeColor = System.Drawing.Color.Red;
+            this.tvTestNoteLabel.Location = new System.Drawing.Point(100, 123);
+            this.tvTestNoteLabel.Name = "tvTestNoteLabel";
+            this.tvTestNoteLabel.Size = new System.Drawing.Size(545, 48);
+            this.tvTestNoteLabel.TabIndex = 19;
+            this.tvTestNoteLabel.Text = "！！注意！！ \r\nチューナー共有前提です。\r\nチューナー共有していない場合、チューナーを占有してしまうことにより録画が失敗することがあるため注意してください。\r\n" +
     "/TSID /SIDオプションは自動付与します。";
             // 
             // useDoubleClickTvtestCheckBox
@@ -809,24 +876,213 @@ namespace RockbarForEDCB
             this.tvtestPathTextBox.Size = new System.Drawing.Size(312, 19);
             this.tvtestPathTextBox.TabIndex = 0;
             // 
-            // tabPage1
+            // otherTabPage
             // 
-            this.tabPage1.Controls.Add(this.showTaskTraiIconCheckBox);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(791, 384);
-            this.tabPage1.TabIndex = 4;
-            this.tabPage1.Text = "その他";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.otherTabPage.Controls.Add(this.colorPreviewLabel);
+            this.otherTabPage.Controls.Add(this.selectForeColorLabel);
+            this.otherTabPage.Controls.Add(this.foreColorTextBox);
+            this.otherTabPage.Controls.Add(this.selectForeColorButton);
+            this.otherTabPage.Controls.Add(this.listBackColorLabel);
+            this.otherTabPage.Controls.Add(this.listBackColorTextBox);
+            this.otherTabPage.Controls.Add(this.selectListBackColorButton);
+            this.otherTabPage.Controls.Add(this.formBackColorPanel);
+            this.otherTabPage.Controls.Add(this.formBackColorLabel);
+            this.otherTabPage.Controls.Add(this.formBackColorTextBox);
+            this.otherTabPage.Controls.Add(this.selectFormBackColorButton);
+            this.otherTabPage.Controls.Add(this.label1);
+            this.otherTabPage.Controls.Add(this.isHorizontalSplitCheckBox);
+            this.otherTabPage.Controls.Add(this.fontTextBox);
+            this.otherTabPage.Controls.Add(this.selectFontButton);
+            this.otherTabPage.Controls.Add(this.toggleVisibleTaskTrayIconClickCheckBox);
+            this.otherTabPage.Controls.Add(this.storeTaskTrayByClosingCheckBox);
+            this.otherTabPage.Controls.Add(this.showTaskTraiIconCheckBox);
+            this.otherTabPage.Location = new System.Drawing.Point(4, 22);
+            this.otherTabPage.Name = "otherTabPage";
+            this.otherTabPage.Size = new System.Drawing.Size(791, 384);
+            this.otherTabPage.TabIndex = 4;
+            this.otherTabPage.Text = "その他";
+            this.otherTabPage.UseVisualStyleBackColor = true;
+            // 
+            // colorPreviewLabel
+            // 
+            this.colorPreviewLabel.AutoSize = true;
+            this.colorPreviewLabel.Location = new System.Drawing.Point(406, 168);
+            this.colorPreviewLabel.Name = "colorPreviewLabel";
+            this.colorPreviewLabel.Size = new System.Drawing.Size(49, 12);
+            this.colorPreviewLabel.TabIndex = 27;
+            this.colorPreviewLabel.Text = "プレビュー";
+            // 
+            // selectForeColorLabel
+            // 
+            this.selectForeColorLabel.AutoSize = true;
+            this.selectForeColorLabel.Location = new System.Drawing.Point(48, 232);
+            this.selectForeColorLabel.Name = "selectForeColorLabel";
+            this.selectForeColorLabel.Size = new System.Drawing.Size(41, 12);
+            this.selectForeColorLabel.TabIndex = 26;
+            this.selectForeColorLabel.Text = "文字色";
+            // 
+            // foreColorTextBox
+            // 
+            this.foreColorTextBox.Location = new System.Drawing.Point(100, 229);
+            this.foreColorTextBox.Name = "foreColorTextBox";
+            this.foreColorTextBox.ReadOnly = true;
+            this.foreColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.foreColorTextBox.TabIndex = 25;
+            // 
+            // selectForeColorButton
+            // 
+            this.selectForeColorButton.Location = new System.Drawing.Point(242, 227);
+            this.selectForeColorButton.Name = "selectForeColorButton";
+            this.selectForeColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectForeColorButton.TabIndex = 24;
+            this.selectForeColorButton.Text = "選択";
+            this.selectForeColorButton.UseVisualStyleBackColor = true;
+            this.selectForeColorButton.Click += new System.EventHandler(this.selectForeColorButton_Click);
+            // 
+            // listBackColorLabel
+            // 
+            this.listBackColorLabel.AutoSize = true;
+            this.listBackColorLabel.Location = new System.Drawing.Point(24, 197);
+            this.listBackColorLabel.Name = "listBackColorLabel";
+            this.listBackColorLabel.Size = new System.Drawing.Size(65, 12);
+            this.listBackColorLabel.TabIndex = 23;
+            this.listBackColorLabel.Text = "リスト背景色";
+            // 
+            // listBackColorTextBox
+            // 
+            this.listBackColorTextBox.Location = new System.Drawing.Point(100, 194);
+            this.listBackColorTextBox.Name = "listBackColorTextBox";
+            this.listBackColorTextBox.ReadOnly = true;
+            this.listBackColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.listBackColorTextBox.TabIndex = 22;
+            // 
+            // selectListBackColorButton
+            // 
+            this.selectListBackColorButton.Location = new System.Drawing.Point(242, 192);
+            this.selectListBackColorButton.Name = "selectListBackColorButton";
+            this.selectListBackColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectListBackColorButton.TabIndex = 21;
+            this.selectListBackColorButton.Text = "選択";
+            this.selectListBackColorButton.UseVisualStyleBackColor = true;
+            this.selectListBackColorButton.Click += new System.EventHandler(this.selectListBackColorButton_Click);
+            // 
+            // formBackColorPanel
+            // 
+            this.formBackColorPanel.Controls.Add(this.listBackColorPanel);
+            this.formBackColorPanel.Location = new System.Drawing.Point(408, 191);
+            this.formBackColorPanel.Name = "formBackColorPanel";
+            this.formBackColorPanel.Size = new System.Drawing.Size(129, 39);
+            this.formBackColorPanel.TabIndex = 20;
+            // 
+            // listBackColorPanel
+            // 
+            this.listBackColorPanel.Controls.Add(this.foreColorLabel);
+            this.listBackColorPanel.Location = new System.Drawing.Point(16, 15);
+            this.listBackColorPanel.Name = "listBackColorPanel";
+            this.listBackColorPanel.Size = new System.Drawing.Size(113, 24);
+            this.listBackColorPanel.TabIndex = 21;
+            // 
+            // foreColorLabel
+            // 
+            this.foreColorLabel.AutoSize = true;
+            this.foreColorLabel.Location = new System.Drawing.Point(4, 5);
+            this.foreColorLabel.Name = "foreColorLabel";
+            this.foreColorLabel.Size = new System.Drawing.Size(64, 12);
+            this.foreColorLabel.TabIndex = 0;
+            this.foreColorLabel.Text = "ＮＨＫ総合１";
+            // 
+            // formBackColorLabel
+            // 
+            this.formBackColorLabel.AutoSize = true;
+            this.formBackColorLabel.Location = new System.Drawing.Point(12, 162);
+            this.formBackColorLabel.Name = "formBackColorLabel";
+            this.formBackColorLabel.Size = new System.Drawing.Size(77, 12);
+            this.formBackColorLabel.TabIndex = 19;
+            this.formBackColorLabel.Text = "フォーム背景色";
+            // 
+            // formBackColorTextBox
+            // 
+            this.formBackColorTextBox.Location = new System.Drawing.Point(100, 159);
+            this.formBackColorTextBox.Name = "formBackColorTextBox";
+            this.formBackColorTextBox.ReadOnly = true;
+            this.formBackColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.formBackColorTextBox.TabIndex = 18;
+            // 
+            // selectFormBackColorButton
+            // 
+            this.selectFormBackColorButton.Location = new System.Drawing.Point(242, 157);
+            this.selectFormBackColorButton.Name = "selectFormBackColorButton";
+            this.selectFormBackColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectFormBackColorButton.TabIndex = 17;
+            this.selectFormBackColorButton.Text = "選択";
+            this.selectFormBackColorButton.UseVisualStyleBackColor = true;
+            this.selectFormBackColorButton.Click += new System.EventHandler(this.selectFormBackColorButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(51, 124);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 12);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "フォント";
+            // 
+            // isHorizontalSplitCheckBox
+            // 
+            this.isHorizontalSplitCheckBox.AutoSize = true;
+            this.isHorizontalSplitCheckBox.Location = new System.Drawing.Point(17, 88);
+            this.isHorizontalSplitCheckBox.Name = "isHorizontalSplitCheckBox";
+            this.isHorizontalSplitCheckBox.Size = new System.Drawing.Size(133, 16);
+            this.isHorizontalSplitCheckBox.TabIndex = 15;
+            this.isHorizontalSplitCheckBox.Text = "一覧を縦に並べて表示";
+            this.isHorizontalSplitCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // fontTextBox
+            // 
+            this.fontTextBox.Location = new System.Drawing.Point(100, 121);
+            this.fontTextBox.Name = "fontTextBox";
+            this.fontTextBox.ReadOnly = true;
+            this.fontTextBox.Size = new System.Drawing.Size(302, 19);
+            this.fontTextBox.TabIndex = 14;
+            // 
+            // selectFontButton
+            // 
+            this.selectFontButton.Location = new System.Drawing.Point(408, 119);
+            this.selectFontButton.Name = "selectFontButton";
+            this.selectFontButton.Size = new System.Drawing.Size(75, 23);
+            this.selectFontButton.TabIndex = 13;
+            this.selectFontButton.Text = "選択";
+            this.selectFontButton.UseVisualStyleBackColor = true;
+            this.selectFontButton.Click += new System.EventHandler(this.selectFontButton_Click);
+            // 
+            // toggleVisibleTaskTrayIconClickCheckBox
+            // 
+            this.toggleVisibleTaskTrayIconClickCheckBox.AutoSize = true;
+            this.toggleVisibleTaskTrayIconClickCheckBox.Location = new System.Drawing.Point(17, 66);
+            this.toggleVisibleTaskTrayIconClickCheckBox.Name = "toggleVisibleTaskTrayIconClickCheckBox";
+            this.toggleVisibleTaskTrayIconClickCheckBox.Size = new System.Drawing.Size(275, 16);
+            this.toggleVisibleTaskTrayIconClickCheckBox.TabIndex = 12;
+            this.toggleVisibleTaskTrayIconClickCheckBox.Text = "タスクトレイアイコンクリックで表示・非表示を切り替える";
+            this.toggleVisibleTaskTrayIconClickCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // storeTaskTrayByClosingCheckBox
+            // 
+            this.storeTaskTrayByClosingCheckBox.AutoSize = true;
+            this.storeTaskTrayByClosingCheckBox.Location = new System.Drawing.Point(17, 44);
+            this.storeTaskTrayByClosingCheckBox.Name = "storeTaskTrayByClosingCheckBox";
+            this.storeTaskTrayByClosingCheckBox.Size = new System.Drawing.Size(176, 16);
+            this.storeTaskTrayByClosingCheckBox.TabIndex = 11;
+            this.storeTaskTrayByClosingCheckBox.Text = "×ボタンでタスクトレイに格納する";
+            this.storeTaskTrayByClosingCheckBox.UseVisualStyleBackColor = true;
             // 
             // showTaskTraiIconCheckBox
             // 
             this.showTaskTraiIconCheckBox.AutoSize = true;
             this.showTaskTraiIconCheckBox.Location = new System.Drawing.Point(17, 22);
             this.showTaskTraiIconCheckBox.Name = "showTaskTraiIconCheckBox";
-            this.showTaskTraiIconCheckBox.Size = new System.Drawing.Size(263, 16);
+            this.showTaskTraiIconCheckBox.Size = new System.Drawing.Size(195, 16);
             this.showTaskTraiIconCheckBox.TabIndex = 10;
-            this.showTaskTraiIconCheckBox.Text = "タスクトレイにアイコンを表示する(次回起動時反映)";
+            this.showTaskTraiIconCheckBox.Text = "タスクトレイに常時アイコンを表示する";
             this.showTaskTraiIconCheckBox.UseVisualStyleBackColor = true;
             // 
             // tvtestOpenFileDialog
@@ -835,33 +1091,102 @@ namespace RockbarForEDCB
             this.tvtestOpenFileDialog.Filter = "exe Files (*.exe)|*.exe";
             this.tvtestOpenFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.tvtestOpenFileDialog_FileOk);
             // 
-            // isAutoOpenFavoriteServiceCheckBox
+            // fontDialog
             // 
-            this.isAutoOpenFavoriteServiceCheckBox.AutoSize = true;
-            this.isAutoOpenFavoriteServiceCheckBox.Location = new System.Drawing.Point(7, 49);
-            this.isAutoOpenFavoriteServiceCheckBox.Name = "isAutoOpenFavoriteServiceCheckBox";
-            this.isAutoOpenFavoriteServiceCheckBox.Size = new System.Drawing.Size(196, 28);
-            this.isAutoOpenFavoriteServiceCheckBox.TabIndex = 9;
-            this.isAutoOpenFavoriteServiceCheckBox.Text = "お気に入りサービスのみ\r\n(地デジ／BS／CS設定との積集合)";
-            this.isAutoOpenFavoriteServiceCheckBox.UseVisualStyleBackColor = true;
+            this.fontDialog.AllowScriptChange = false;
+            this.fontDialog.AllowVerticalFonts = false;
+            this.fontDialog.MaxSize = 28;
+            this.fontDialog.MinSize = 6;
+            this.fontDialog.ShowEffects = false;
             // 
-            // tvtestBscsOptionExampleLabel
+            // tunerTabPage
             // 
-            this.tvtestBscsOptionExampleLabel.AutoSize = true;
-            this.tvtestBscsOptionExampleLabel.Location = new System.Drawing.Point(424, 52);
-            this.tvtestBscsOptionExampleLabel.Name = "tvtestBscsOptionExampleLabel";
-            this.tvtestBscsOptionExampleLabel.Size = new System.Drawing.Size(121, 24);
-            this.tvtestBscsOptionExampleLabel.TabIndex = 24;
-            this.tvtestBscsOptionExampleLabel.Text = "(例: BS/CS)\r\n/d BonDriver_PT3_S.dll";
+            this.tunerTabPage.Controls.Add(this.tunerNameLabel);
+            this.tunerTabPage.Controls.Add(this.tunerNameNoteLabel);
+            this.tunerTabPage.Controls.Add(this.updateTunerNameButton);
+            this.tunerTabPage.Controls.Add(this.tunerNameTextBox);
+            this.tunerTabPage.Controls.Add(this.tunerNameListView);
+            this.tunerTabPage.Location = new System.Drawing.Point(4, 22);
+            this.tunerTabPage.Name = "tunerTabPage";
+            this.tunerTabPage.Size = new System.Drawing.Size(791, 384);
+            this.tunerTabPage.TabIndex = 5;
+            this.tunerTabPage.Text = "チューナー名";
+            this.tunerTabPage.UseVisualStyleBackColor = true;
             // 
-            // tvtestDttvOptionExampleLabel
+            // tunerNameListView
             // 
-            this.tvtestDttvOptionExampleLabel.AutoSize = true;
-            this.tvtestDttvOptionExampleLabel.Location = new System.Drawing.Point(424, 89);
-            this.tvtestDttvOptionExampleLabel.Name = "tvtestDttvOptionExampleLabel";
-            this.tvtestDttvOptionExampleLabel.Size = new System.Drawing.Size(121, 24);
-            this.tvtestDttvOptionExampleLabel.TabIndex = 25;
-            this.tvtestDttvOptionExampleLabel.Text = "(例: 地デジ)\r\n/d BonDriver_PT3_T.dll";
+            this.tunerNameListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.tunerNameMarkColumnHeader,
+            this.tunerNameTunerIdColumnHeader,
+            this.tunerNameBonDriverNameColumnHeader,
+            this.tunerNameTunerNameColumnHeader});
+            this.tunerNameListView.FullRowSelect = true;
+            this.tunerNameListView.HideSelection = false;
+            this.tunerNameListView.Location = new System.Drawing.Point(7, 12);
+            this.tunerNameListView.MultiSelect = false;
+            this.tunerNameListView.Name = "tunerNameListView";
+            this.tunerNameListView.Size = new System.Drawing.Size(463, 353);
+            this.tunerNameListView.TabIndex = 1;
+            this.tunerNameListView.UseCompatibleStateImageBehavior = false;
+            this.tunerNameListView.View = System.Windows.Forms.View.Details;
+            this.tunerNameListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.tunerNameListView_ColumnClick);
+            this.tunerNameListView.SelectedIndexChanged += new System.EventHandler(this.tunerNameListView_SelectedIndexChanged);
+            // 
+            // tunerNameTunerIdColumnHeader
+            // 
+            this.tunerNameTunerIdColumnHeader.Text = "チューナーID(上位2byte)";
+            this.tunerNameTunerIdColumnHeader.Width = 130;
+            // 
+            // tunerNameBonDriverNameColumnHeader
+            // 
+            this.tunerNameBonDriverNameColumnHeader.Text = "BonDriver名";
+            this.tunerNameBonDriverNameColumnHeader.Width = 160;
+            // 
+            // tunerNameTunerNameColumnHeader
+            // 
+            this.tunerNameTunerNameColumnHeader.Text = "表示名";
+            this.tunerNameTunerNameColumnHeader.Width = 140;
+            // 
+            // tunerNameTextBox
+            // 
+            this.tunerNameTextBox.Location = new System.Drawing.Point(525, 23);
+            this.tunerNameTextBox.Name = "tunerNameTextBox";
+            this.tunerNameTextBox.Size = new System.Drawing.Size(127, 19);
+            this.tunerNameTextBox.TabIndex = 2;
+            // 
+            // updateTunerNameButton
+            // 
+            this.updateTunerNameButton.Location = new System.Drawing.Point(658, 21);
+            this.updateTunerNameButton.Name = "updateTunerNameButton";
+            this.updateTunerNameButton.Size = new System.Drawing.Size(75, 23);
+            this.updateTunerNameButton.TabIndex = 3;
+            this.updateTunerNameButton.Text = "更新";
+            this.updateTunerNameButton.UseVisualStyleBackColor = true;
+            this.updateTunerNameButton.Click += new System.EventHandler(this.updateTunerNameButton_Click);
+            // 
+            // tunerNameNoteLabel
+            // 
+            this.tunerNameNoteLabel.AutoSize = true;
+            this.tunerNameNoteLabel.Location = new System.Drawing.Point(476, 60);
+            this.tunerNameNoteLabel.Name = "tunerNameNoteLabel";
+            this.tunerNameNoteLabel.Size = new System.Drawing.Size(317, 48);
+            this.tunerNameNoteLabel.TabIndex = 26;
+            this.tunerNameNoteLabel.Text = "※チューナー一覧に表示名+連番(下位2byte)で表示\r\n\r\nデフォルトでBonDriver名から推測した表示名を当て込んでいます。\r\nあっていない場合もあるので" +
+    "適宜更新してください。";
+            // 
+            // tunerNameLabel
+            // 
+            this.tunerNameLabel.AutoSize = true;
+            this.tunerNameLabel.Location = new System.Drawing.Point(478, 26);
+            this.tunerNameLabel.Name = "tunerNameLabel";
+            this.tunerNameLabel.Size = new System.Drawing.Size(41, 12);
+            this.tunerNameLabel.TabIndex = 27;
+            this.tunerNameLabel.Text = "表示名";
+            // 
+            // tunerNameMarkColumnHeader
+            // 
+            this.tunerNameMarkColumnHeader.Text = "";
+            this.tunerNameMarkColumnHeader.Width = 20;
             // 
             // SettingForm
             // 
@@ -887,8 +1212,13 @@ namespace RockbarForEDCB
             this.autoStartTargetGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.autoCloseMarginNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoOpenMarginNumericUpDown)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.otherTabPage.ResumeLayout(false);
+            this.otherTabPage.PerformLayout();
+            this.formBackColorPanel.ResumeLayout(false);
+            this.listBackColorPanel.ResumeLayout(false);
+            this.listBackColorPanel.PerformLayout();
+            this.tunerTabPage.ResumeLayout(false);
+            this.tunerTabPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -902,17 +1232,17 @@ namespace RockbarForEDCB
         private System.Windows.Forms.Button removeSelectedServiceButton;
         private System.Windows.Forms.Button moveDownSelectedServiceButton;
         private System.Windows.Forms.Button moveUpSelectedServiceButton;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader allServiceTypeColumnHeader;
+        private System.Windows.Forms.ColumnHeader allServiceNameColumnHeader;
+        private System.Windows.Forms.ColumnHeader allServiceTsidColumnHeader;
+        private System.Windows.Forms.ColumnHeader allServiceSidColumnHeader;
+        private System.Windows.Forms.ColumnHeader allServiceMarkColumnHeader;
         private System.Windows.Forms.ListView selectedServiceListView;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader selectedServiceMarkColumnHeader;
+        private System.Windows.Forms.ColumnHeader selectedServiceTypeColumnHeader;
+        private System.Windows.Forms.ColumnHeader selectedServiceNameColumnHeader;
+        private System.Windows.Forms.ColumnHeader selectedServiceTsidColumnHeader;
+        private System.Windows.Forms.ColumnHeader selectedServiceSidColumnHeader;
         private System.Windows.Forms.TabControl settingTabControl;
         private System.Windows.Forms.TabPage allServiceTabPage;
         private System.Windows.Forms.TabPage edcbLinkageTabPage;
@@ -923,27 +1253,27 @@ namespace RockbarForEDCB
         private System.Windows.Forms.TextBox webLinkUrlTextBox;
         private System.Windows.Forms.TabPage favoriteServiceTabPage;
         private System.Windows.Forms.ListView selectedServiceListView2;
-        private System.Windows.Forms.ColumnHeader columnHeader16;
-        private System.Windows.Forms.ColumnHeader columnHeader17;
-        private System.Windows.Forms.ColumnHeader columnHeader18;
-        private System.Windows.Forms.ColumnHeader columnHeader19;
-        private System.Windows.Forms.ColumnHeader columnHeader20;
+        private System.Windows.Forms.ColumnHeader selectedService2MarkColumnHeader;
+        private System.Windows.Forms.ColumnHeader selectedService2TypeColumnHeader;
+        private System.Windows.Forms.ColumnHeader selectedService2NameColumnHeader;
+        private System.Windows.Forms.ColumnHeader selectedService2TsidColumnHeader;
+        private System.Windows.Forms.ColumnHeader selectedService2SidColumnHeader;
         private System.Windows.Forms.Button moveUpFavoriteServiceButton;
         private System.Windows.Forms.Button moveDownFavoriteServiceButton;
         private System.Windows.Forms.Button removeFavoriteServiceButton;
         private System.Windows.Forms.ListView favoriteServiceListView;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
-        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader favoriteServiceMarkColumnHeader;
+        private System.Windows.Forms.ColumnHeader favoriteServiceTypeColumnHeader;
+        private System.Windows.Forms.ColumnHeader favoriteServiceNameColumnHeader;
+        private System.Windows.Forms.ColumnHeader favoriteServiceTsidColumnHeader;
+        private System.Windows.Forms.ColumnHeader favoriteServiceSidColumnHeader;
         private System.Windows.Forms.Button addFavoriteServiceButton;
         private System.Windows.Forms.TabPage tvtestLinkageTabPage;
         private System.Windows.Forms.Label portNumberLabel;
         private System.Windows.Forms.CheckBox useTcpIpCheckbox;
         private System.Windows.Forms.Label ipAddressLabel;
         private System.Windows.Forms.TextBox ipAddressTextBox;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label tvTestNoteLabel;
         private System.Windows.Forms.CheckBox useDoubleClickTvtestCheckBox;
         private System.Windows.Forms.Label tvtestDttvOptionLabel;
         private System.Windows.Forms.TextBox tvtestDttvOptionTextBox;
@@ -954,10 +1284,10 @@ namespace RockbarForEDCB
         private System.Windows.Forms.TextBox tvtestPathTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown portNumberNumericUpDown;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label selectedServiceListLabel;
+        private System.Windows.Forms.Label allServiceListLabel;
+        private System.Windows.Forms.Label favoriteServiceListLabel;
+        private System.Windows.Forms.Label selectedServiceList2Label;
         private System.Windows.Forms.NumericUpDown autoCloseMarginNumericUpDown;
         private System.Windows.Forms.Label autoCloseMarginLabel;
         private System.Windows.Forms.NumericUpDown autoOpenMarginNumericUpDown;
@@ -968,10 +1298,41 @@ namespace RockbarForEDCB
         private System.Windows.Forms.CheckBox isAutoOpenCsCheckBox;
         private System.Windows.Forms.CheckBox isAutoOpenBsCheckBox;
         private System.Windows.Forms.Label portNumberNoteLabel;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage otherTabPage;
         private System.Windows.Forms.CheckBox showTaskTraiIconCheckBox;
         private System.Windows.Forms.CheckBox isAutoOpenFavoriteServiceCheckBox;
         private System.Windows.Forms.Label tvtestDttvOptionExampleLabel;
         private System.Windows.Forms.Label tvtestBscsOptionExampleLabel;
+        private System.Windows.Forms.CheckBox toggleVisibleTaskTrayIconClickCheckBox;
+        private System.Windows.Forms.CheckBox storeTaskTrayByClosingCheckBox;
+        private System.Windows.Forms.Button selectFontButton;
+        private System.Windows.Forms.FontDialog fontDialog;
+        private System.Windows.Forms.TextBox fontTextBox;
+        private System.Windows.Forms.CheckBox isHorizontalSplitCheckBox;
+        private System.Windows.Forms.Label formBackColorLabel;
+        private System.Windows.Forms.TextBox formBackColorTextBox;
+        private System.Windows.Forms.Button selectFormBackColorButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.Panel formBackColorPanel;
+        private System.Windows.Forms.Panel listBackColorPanel;
+        private System.Windows.Forms.Label foreColorLabel;
+        private System.Windows.Forms.Label colorPreviewLabel;
+        private System.Windows.Forms.Label selectForeColorLabel;
+        private System.Windows.Forms.TextBox foreColorTextBox;
+        private System.Windows.Forms.Button selectForeColorButton;
+        private System.Windows.Forms.Label listBackColorLabel;
+        private System.Windows.Forms.TextBox listBackColorTextBox;
+        private System.Windows.Forms.Button selectListBackColorButton;
+        private System.Windows.Forms.TabPage tunerTabPage;
+        private System.Windows.Forms.ListView tunerNameListView;
+        private System.Windows.Forms.ColumnHeader tunerNameTunerIdColumnHeader;
+        private System.Windows.Forms.ColumnHeader tunerNameBonDriverNameColumnHeader;
+        private System.Windows.Forms.ColumnHeader tunerNameTunerNameColumnHeader;
+        private System.Windows.Forms.Button updateTunerNameButton;
+        private System.Windows.Forms.TextBox tunerNameTextBox;
+        private System.Windows.Forms.Label tunerNameNoteLabel;
+        private System.Windows.Forms.Label tunerNameLabel;
+        private System.Windows.Forms.ColumnHeader tunerNameMarkColumnHeader;
     }
 }

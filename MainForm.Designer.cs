@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "test",
             "test",
             "test"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem("");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.serviceListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,7 +54,6 @@
             this.tunerListView = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tunerLabel = new System.Windows.Forms.Label();
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.resetButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
@@ -88,13 +87,13 @@
             this.serviceListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.serviceListView.HideSelection = false;
             this.serviceListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem19,
+            listViewItem20,
+            listViewItem21});
             this.serviceListView.Location = new System.Drawing.Point(0, 0);
             this.serviceListView.Name = "serviceListView";
             this.serviceListView.ShowItemToolTips = true;
-            this.serviceListView.Size = new System.Drawing.Size(518, 194);
+            this.serviceListView.Size = new System.Drawing.Size(467, 194);
             this.serviceListView.TabIndex = 0;
             this.serviceListView.UseCompatibleStateImageBehavior = false;
             this.serviceListView.View = System.Windows.Forms.View.Details;
@@ -133,7 +132,6 @@
             // 
             // timer
             // 
-            this.timer.Enabled = true;
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
@@ -213,7 +211,7 @@
             this.tunerListView.Location = new System.Drawing.Point(0, 0);
             this.tunerListView.Name = "tunerListView";
             this.tunerListView.ShowItemToolTips = true;
-            this.tunerListView.Size = new System.Drawing.Size(209, 194);
+            this.tunerListView.Size = new System.Drawing.Size(260, 194);
             this.tunerListView.TabIndex = 2;
             this.tunerListView.UseCompatibleStateImageBehavior = false;
             this.tunerListView.View = System.Windows.Forms.View.Details;
@@ -222,16 +220,6 @@
             // columnHeader6
             // 
             this.columnHeader6.Width = 130;
-            // 
-            // tunerLabel
-            // 
-            this.tunerLabel.AutoSize = true;
-            this.tunerLabel.Enabled = false;
-            this.tunerLabel.Location = new System.Drawing.Point(533, 11);
-            this.tunerLabel.Name = "tunerLabel";
-            this.tunerLabel.Size = new System.Drawing.Size(76, 12);
-            this.tunerLabel.TabIndex = 3;
-            this.tunerLabel.Text = "予約チューナー";
             // 
             // filterTextBox
             // 
@@ -298,7 +286,7 @@
             this.notifyIcon.ContextMenuStrip = this.taskTrayContextMenuStrip;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "Rockbar for EDCB";
-            this.notifyIcon.Click += new System.EventHandler(this.notifyIcon_Click);
+            this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
             // 
             // taskTrayContextMenuStrip
             // 
@@ -330,7 +318,7 @@
             // 
             this.splitContainer.Panel2.Controls.Add(this.tunerListView);
             this.splitContainer.Size = new System.Drawing.Size(731, 194);
-            this.splitContainer.SplitterDistance = 518;
+            this.splitContainer.SplitterDistance = 467;
             this.splitContainer.TabIndex = 11;
             this.splitContainer.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer_SplitterMoved);
             // 
@@ -348,11 +336,10 @@
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.filterTextBox);
-            this.Controls.Add(this.tunerLabel);
             this.Controls.Add(this.serviceTabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(746, 100);
+            this.MinimumSize = new System.Drawing.Size(600, 100);
             this.Name = "MainForm";
             this.ShowInTaskbar = false;
             this.Text = "RockbarForEDCB";
@@ -390,7 +377,6 @@
         private System.Windows.Forms.ListView tunerListView;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.Label tunerLabel;
         private System.Windows.Forms.TabPage allTabPage;
         private System.Windows.Forms.TextBox filterTextBox;
         private System.Windows.Forms.Button resetButton;

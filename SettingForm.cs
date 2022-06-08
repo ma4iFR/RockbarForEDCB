@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +19,82 @@ namespace RockbarForEDCB
     /// </summary>
     public partial class SettingForm : Form
     {
+        // ListViewのソーター。ListViewにセットすると自動整列解除できないため、適宜ListViewにセットする。
+        private ListViewItemComparer allServiceListViewSorter = new ListViewItemComparer();
+        private ListViewItemComparer selectedServiceListViewSorter = new ListViewItemComparer();
+        private ListViewItemComparer selectedServiceListView2Sorter = new ListViewItemComparer();
+        private ListViewItemComparer favoriteServiceListViewSorter = new ListViewItemComparer();
+        private ListViewItemComparer tunerNameListViewSorter = new ListViewItemComparer();
+
         // CtrlCmdUtil
         private CtrlCmdUtil ctrlCmdUtil = null;
 
         // CtrlCmdの結果格納用
         private List<EpgServiceInfo> serviceInfos = new List<EpgServiceInfo>();
+        private List<TunerReserveInfo> tunerReserveInfos = new List<TunerReserveInfo>();
+
+        /// <summary>
+        /// ListView用の比較クラス
+        /// ListViewごとに作成・状態保持しておき、列ヘッダクリックごとにソートを行う
+        /// </summary>
+        public class ListViewItemComparer : IComparer
+        {
+            private int columnIndex = -1;
+            private SortOrder sortOrder = SortOrder.Ascending;
+
+            /// <summary>
+            /// 列index更新処理
+            /// </summary>
+            /// <param name="columnIndex">列index</param>
+            public void setColumn(int columnIndex)
+            {
+                // 同じカラムがクリックされた場合はソート方向を反転
+                if (this.columnIndex == columnIndex)
+                {
+                    if (this.sortOrder == SortOrder.Ascending)
+                    {
+                        this.sortOrder = SortOrder.Descending;
+                    }
+                    else
+                    {
+                        this.sortOrder = SortOrder.Ascending;
+                    }
+                }
+                else
+                {
+                    this.sortOrder = SortOrder.Ascending;
+                }
+
+                this.columnIndex = columnIndex;
+            }
+
+            /// <summary>
+            /// 比較処理
+            /// 要素1<要素2 → 負, 要素1>要素2 → 正, 要素1=要素2 → 0
+            /// </summary>
+            /// <param name="x1">要素1</param>
+            /// <param name="x2">要素2</param>
+            /// <returns>比較結果</returns>
+            public int Compare(object x1, object x2)
+            {
+                if (columnIndex < 0)
+                {
+                    return 0;
+                }
+
+                ListViewItem item1 = (ListViewItem) x1;
+                ListViewItem item2 = (ListViewItem) x2;
+
+                int result = string.Compare(item1.SubItems[columnIndex].Text, item2.SubItems[columnIndex].Text);
+
+                if (this.sortOrder == SortOrder.Descending)
+                {
+                    result *= -1;
+                }
+
+                return result;
+            }
+        }
 
         /// <summary>
         /// コンストラクタ
@@ -43,9 +116,9 @@ namespace RockbarForEDCB
             {
                 setting = Toml.ReadFile<RockBarSetting>(RockbarUtility.GetTomlSettingFilePath());
             }
-            catch
+            catch (FileNotFoundException)
             {
-                // TOML設定ファイルが読み込めない場合は空設定で起動
+                // TOML設定ファイルが存在しない場合は準正常系として空設定で起動。それ以外の場合は例外を投げる
                 setting = new RockBarSetting();
             }
 
@@ -72,6 +145,24 @@ namespace RockbarForEDCB
             isAutoOpenBsCheckBox.Checked = setting.IsAutoOpenTvtestBs;
             isAutoOpenCsCheckBox.Checked = setting.IsAutoOpenTvtestCs;
             isAutoOpenFavoriteServiceCheckBox.Checked = setting.IsAutoOpenTvtestFavoriteService;
+            showTaskTraiIconCheckBox.Checked = setting.ShowTaskTrayIcon;
+            storeTaskTrayByClosingCheckBox.Checked = setting.StoreTaskTrayByClosing;
+            toggleVisibleTaskTrayIconClickCheckBox.Checked = setting.ToggleVisibleTaskTrayIconClick;
+            isHorizontalSplitCheckBox.Checked = setting.IsHorizontalSplit;
+            fontTextBox.Text = setting.Font;
+
+            TypeConverter fontConverter = TypeDescriptor.GetConverter(typeof(Font));
+            foreColorLabel.Font = (Font)fontConverter.ConvertFromString(setting.Font);
+
+            formBackColorTextBox.Text = setting.FormBackColor;
+            listBackColorTextBox.Text = setting.ListBackColor;
+            foreColorTextBox.Text = setting.ForeColor;
+
+            TypeConverter colorConverter = TypeDescriptor.GetConverter(typeof(Color));
+
+            formBackColorPanel.BackColor = (Color)colorConverter.ConvertFromString(setting.FormBackColor);
+            listBackColorPanel.BackColor = (Color)colorConverter.ConvertFromString(setting.ListBackColor);
+            foreColorLabel.ForeColor = (Color)colorConverter.ConvertFromString(setting.ForeColor);
 
             // 設定値異常の場合、下限にする
             if (setting.AutoOpenMargin > autoOpenMarginNumericUpDown.Maximum || setting.AutoOpenMargin < autoOpenMarginNumericUpDown.Minimum)
@@ -93,16 +184,68 @@ namespace RockbarForEDCB
                 autoCloseMarginNumericUpDown.Value = setting.AutoCloseMargin;
             }
 
-            showTaskTraiIconCheckBox.Checked = setting.ShowTaskTrayIcon;
-
             // サービス一覧取得
             serviceInfos.Clear();
+            tunerReserveInfos.Clear();
 
             if (canConnect)
             {
+                ctrlCmdUtil.SendEnumTunerReserve(ref tunerReserveInfos);
                 ctrlCmdUtil.SendEnumService(ref serviceInfos);
             }
 
+            // チューナー一覧の表示
+            foreach (TunerReserveInfo tunerReserveInfo in tunerReserveInfos)
+            {
+                if (!tunerNameListView.Items.ContainsKey(tunerReserveInfo.tunerName)) {
+                    String[] data = null;
+
+                    if (setting.BonDriverNameToTunerName.ContainsKey(tunerReserveInfo.tunerName))
+                    {
+                        data = new []{
+                            "",
+                            (tunerReserveInfo.tunerID & 0xffff0000).ToString("x8").Substring(0, 4),
+                            tunerReserveInfo.tunerName,
+                            setting.BonDriverNameToTunerName[tunerReserveInfo.tunerName]
+                        };
+
+                    }
+                    else
+                    {
+                        data = new []{
+                            "",
+                            (tunerReserveInfo.tunerID & 0xffff0000).ToString("x8").Substring(0, 4),
+                            tunerReserveInfo.tunerName,
+                            RockbarUtility.GetDefaultTunerName(tunerReserveInfo.tunerName)
+                        };
+                    }
+
+                    ListViewItem item = new ListViewItem(data);
+                    item.Name = tunerReserveInfo.tunerName;
+                    tunerNameListView.Items.Add(item);
+                }
+            }
+
+            // 取得したチューナに含まれず、設定にだけあるものを一応表示
+            foreach (var kv in setting.BonDriverNameToTunerName)
+            {
+                // ListView上になければ追加しておく
+                if (!tunerNameListView.Items.ContainsKey(kv.Key))
+                {
+                    String[] data = {
+                        "！",
+                        "",
+                        kv.Key,
+                        kv.Value
+                    };
+
+                    ListViewItem item = new ListViewItem(data);
+                    item.Name = kv.Key;
+                    tunerNameListView.Items.Add(item);
+                }
+            }
+
+            // 全チャンネルの表示
             foreach (EpgServiceInfo epgServiceInfo in serviceInfos)
             {
                 ServiceType serviceType = RockbarUtility.GetServiceType(epgServiceInfo.ONID);
@@ -251,8 +394,8 @@ namespace RockbarForEDCB
 
                 if (leftListView.Items.ContainsKey(item.Name))
                 {
-                    //TODO ちゃんとしたcolumn名にしてカラムのindexで取得するようにする
-                    leftListView.Items[item.Name].SubItems[0].Text = "";
+                    // mark列は共通なので全サービス一覧のindexを取って問題ない
+                    leftListView.Items[item.Name].SubItems[allServiceMarkColumnHeader.Index].Text = "";
                     leftListView.Items[item.Name].BackColor = Color.White;
                 }
             }
@@ -426,8 +569,11 @@ namespace RockbarForEDCB
 
             foreach (ListViewItem item in selectedServiceListView.Items)
             {
-                //TODO indexをどうにかする
-                selectedServices.Add(new Service { Tsid = item.SubItems[3].Text, Sid = item.SubItems[4].Text, Name = item.SubItems[2].Text });
+                selectedServices.Add(new Service {
+                    Tsid = item.SubItems[selectedServiceTsidColumnHeader.Index].Text,
+                    Sid = item.SubItems[selectedServiceSidColumnHeader.Index].Text,
+                    Name = item.SubItems[selectedServiceNameColumnHeader.Index].Text
+                });
             }
 
             RockbarUtility.SaveAllServicesToSetting(selectedServices);
@@ -437,8 +583,11 @@ namespace RockbarForEDCB
 
             foreach (ListViewItem item in favoriteServiceListView.Items)
             {
-                //TODO indexをどうにかする
-                favoriteServices.Add(new Service { Tsid = item.SubItems[3].Text, Sid = item.SubItems[4].Text, Name = item.SubItems[2].Text });
+                favoriteServices.Add(new Service {
+                    Tsid = item.SubItems[favoriteServiceTsidColumnHeader.Index].Text,
+                    Sid = item.SubItems[favoriteServiceSidColumnHeader.Index].Text,
+                    Name = item.SubItems[favoriteServiceNameColumnHeader.Index].Text
+                });
             }
 
             RockbarUtility.SaveFavoriteServicesToSetting(favoriteServices);
@@ -462,6 +611,24 @@ namespace RockbarForEDCB
             rockbarSetting.AutoOpenMargin = (uint) autoOpenMarginNumericUpDown.Value;
             rockbarSetting.AutoCloseMargin = (uint) autoCloseMarginNumericUpDown.Value;
             rockbarSetting.ShowTaskTrayIcon = showTaskTraiIconCheckBox.Checked;
+            rockbarSetting.StoreTaskTrayByClosing = storeTaskTrayByClosingCheckBox.Checked;
+            rockbarSetting.ToggleVisibleTaskTrayIconClick = toggleVisibleTaskTrayIconClickCheckBox.Checked;
+            rockbarSetting.IsHorizontalSplit = isHorizontalSplitCheckBox.Checked;
+
+            rockbarSetting.Font = fontTextBox.Text;
+            rockbarSetting.FormBackColor = formBackColorTextBox.Text;
+            rockbarSetting.ListBackColor = listBackColorTextBox.Text;
+            rockbarSetting.ForeColor = foreColorTextBox.Text;
+
+            rockbarSetting.BonDriverNameToTunerName = new Dictionary<string, string>();
+
+            foreach (ListViewItem item in tunerNameListView.Items)
+            {
+                rockbarSetting.BonDriverNameToTunerName.Add(
+                    item.SubItems[tunerNameBonDriverNameColumnHeader.Index].Text,
+                    item.SubItems[tunerNameTunerNameColumnHeader.Index].Text
+                );
+            }
 
             Toml.WriteFile(rockbarSetting, RockbarUtility.GetTomlSettingFilePath());
 
@@ -536,6 +703,195 @@ namespace RockbarForEDCB
                     item.SubItems[1].Text = "";
                     item.SubItems[2].Text = "";
                 };
+            }
+        }
+
+        /// <summary>
+        /// 全サービス一覧のカラムヘッダクリック処理
+        /// </summary>
+        /// <param name="sender">イベントソース</param>
+        /// <param name="e">イベントパラメータ</param>
+        private void allServiceListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // ソートする
+            allServiceListViewSorter.setColumn(e.Column);
+            allServiceListView.ListViewItemSorter = allServiceListViewSorter;
+            allServiceListView.ListViewItemSorter = null;
+        }
+
+        /// <summary>
+        /// 選択サービス一覧のカラムヘッダクリック処理
+        /// </summary>
+        /// <param name="sender">イベントソース</param>
+        /// <param name="e">イベントパラメータ</param>
+        private void selectedServiceListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // ソートする
+            selectedServiceListViewSorter.setColumn(e.Column);
+            selectedServiceListView.ListViewItemSorter = selectedServiceListViewSorter;
+            selectedServiceListView.ListViewItemSorter = null;
+        }
+
+        /// <summary>
+        /// 選択サービス一覧(お気に入りサービスタブ)のカラムヘッダクリック処理
+        /// </summary>
+        /// <param name="sender">イベントソース</param>
+        /// <param name="e">イベントパラメータ</param>
+        private void selectedServiceListView2_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // ソートする
+            selectedServiceListView2Sorter.setColumn(e.Column);
+            selectedServiceListView2.ListViewItemSorter = selectedServiceListView2Sorter;
+            selectedServiceListView2.ListViewItemSorter = null;
+        }
+
+        /// <summary>
+        /// お気に入りサービス一覧のカラムヘッダクリック処理
+        /// </summary>
+        /// <param name="sender">イベントソース</param>
+        /// <param name="e">イベントパラメータ</param>
+        private void favoriteServiceListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // ソートする
+            favoriteServiceListViewSorter.setColumn(e.Column);
+            favoriteServiceListView.ListViewItemSorter = favoriteServiceListViewSorter;
+            favoriteServiceListView.ListViewItemSorter = null;
+        }
+
+        /// <summary>
+        /// チューナー名一覧のカラムヘッダクリック処理
+        /// </summary>
+        /// <param name="sender">イベントソース</param>
+        /// <param name="e">イベントパラメータ</param>
+        private void tunerNameListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // ソートする
+            tunerNameListViewSorter.setColumn(e.Column);
+            tunerNameListView.ListViewItemSorter = tunerNameListViewSorter;
+            tunerNameListView.ListViewItemSorter = null;
+        }
+
+        /// <summary>
+        /// フォント選択ボタン押下処理
+        /// </summary>
+        /// <param name="sender">イベントソース</param>
+        /// <param name="e">イベントパラメータ</param>
+        private void selectFontButton_Click(object sender, EventArgs e)
+        {
+            // フォント選択ダイアログを開いて設定値を反映
+            TypeConverter fontConverter = TypeDescriptor.GetConverter(typeof(Font));
+
+            if (fontTextBox.Text != null)
+            {
+                fontDialog.Font = (Font)fontConverter.ConvertFromString(fontTextBox.Text);
+            }
+
+            DialogResult result = fontDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                fontTextBox.Text = fontConverter.ConvertToString(fontDialog.Font);
+                foreColorLabel.Font = fontDialog.Font;
+            }
+        }
+
+        /// <summary>
+        /// フォーム背景色選択ボタン押下処理
+        /// </summary>
+        /// <param name="sender">イベントソース</param>
+        /// <param name="e">イベントパラメータ</param>
+        private void selectFormBackColorButton_Click(object sender, EventArgs e)
+        {
+            // カラー選択ダイアログを開いて設定値を反映
+            TypeConverter colorConverter = TypeDescriptor.GetConverter(typeof(Color));
+
+            if (formBackColorTextBox.Text != null)
+            {
+                colorDialog.Color = (Color)colorConverter.ConvertFromString(formBackColorTextBox.Text);
+            }
+
+            DialogResult result = colorDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                formBackColorTextBox.Text = colorConverter.ConvertToString(colorDialog.Color);
+                formBackColorPanel.BackColor = colorDialog.Color;
+            }
+        }
+
+        /// <summary>
+        /// リスト背景色選択ボタン押下処理
+        /// </summary>
+        /// <param name="sender">イベントソース</param>
+        /// <param name="e">イベントパラメータ</param>
+        private void selectListBackColorButton_Click(object sender, EventArgs e)
+        {
+            // カラー選択ダイアログを開いて設定値を反映
+            TypeConverter colorConverter = TypeDescriptor.GetConverter(typeof(Color));
+
+            if (listBackColorTextBox.Text != null)
+            {
+                colorDialog.Color = (Color)colorConverter.ConvertFromString(listBackColorTextBox.Text);
+            }
+
+            DialogResult result = colorDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                listBackColorTextBox.Text = colorConverter.ConvertToString(colorDialog.Color);
+                listBackColorPanel.BackColor = colorDialog.Color;
+            }
+        }
+
+        /// <summary>
+        /// 文字色選択ボタン押下処理
+        /// </summary>
+        /// <param name="sender">イベントソース</param>
+        /// <param name="e">イベントパラメータ</param>
+        private void selectForeColorButton_Click(object sender, EventArgs e)
+        {
+            // カラー選択ダイアログを開いて設定値を反映
+            TypeConverter colorConverter = TypeDescriptor.GetConverter(typeof(Color));
+
+            if (foreColorTextBox.Text != null)
+            {
+                colorDialog.Color = (Color)colorConverter.ConvertFromString(foreColorTextBox.Text);
+            }
+
+            DialogResult result = colorDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                foreColorTextBox.Text = colorConverter.ConvertToString(colorDialog.Color);
+                foreColorLabel.ForeColor = colorDialog.Color;
+            }
+        }
+
+        /// <summary>
+        /// チューナー名選択項目変更処理
+        /// </summary>
+        /// <param name="sender">イベントソース</param>
+        /// <param name="e">イベントパラメータ</param>
+        private void tunerNameListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // テキストボックスに選択したチューナー名を表示
+            if (tunerNameListView.SelectedItems.Count > 0)
+            {
+                tunerNameTextBox.Text = tunerNameListView.SelectedItems[0].SubItems[tunerNameTunerNameColumnHeader.Index].Text;
+            }
+        }
+
+        /// <summary>
+        /// チューナー名更新ボタン押下処理
+        /// </summary>
+        /// <param name="sender">イベントソース</param>
+        /// <param name="e">イベントパラメータ</param>
+        private void updateTunerNameButton_Click(object sender, EventArgs e)
+        {
+            // ListViewに反映
+            if (tunerNameListView.SelectedItems.Count > 0)
+            {
+                tunerNameListView.SelectedItems[0].SubItems[tunerNameTunerNameColumnHeader.Index].Text = tunerNameTextBox.Text;
             }
         }
     }

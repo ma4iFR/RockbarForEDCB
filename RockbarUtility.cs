@@ -1,11 +1,13 @@
 ﻿using CsvHelper.Configuration;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace RockbarForEDCB
@@ -59,6 +61,15 @@ namespace RockbarForEDCB
         {
             // 数値系は0初期化・bool系はfalse初期化・stringはnull初期化。設定が必要な箇所だけ設定する
 
+            TypeConverter fontConverter = TypeDescriptor.GetConverter(typeof(Font));
+            this.Font = fontConverter.ConvertToString(SystemFonts.DefaultFont);
+
+            TypeConverter colorConverter = TypeDescriptor.GetConverter(typeof(Color));
+            this.FormBackColor = colorConverter.ConvertToString(Color.FromArgb(163, 216, 232));
+            this.ListBackColor = colorConverter.ConvertToString(Color.FromArgb(40, 40, 40));
+            this.ForeColor = colorConverter.ConvertToString(Color.FromArgb(25, 250, 140));
+
+            BonDriverNameToTunerName = new Dictionary<string, string>();
         }
 
         // 起動時x座標
@@ -103,8 +114,24 @@ namespace RockbarForEDCB
         public uint AutoOpenMargin { get; set; }
         // TVTest自動起動終了マージン
         public uint AutoCloseMargin { get; set; }
-        // タスクトレイアイコン表示
+        // タスクトレイアイコン常時表示
         public bool ShowTaskTrayIcon { get; set; }
+        // ×ボタンでタスクトレイに格納
+        public bool StoreTaskTrayByClosing { get; set; }
+        // タスクトレイアイコンクリック時表示・非表示切り替え
+        public bool ToggleVisibleTaskTrayIconClick { get; set; }
+        // 水平分割
+        public bool IsHorizontalSplit { get; set; }
+        // フォント(シリアライズしたもの)
+        public string Font { get; set; }
+        // フォーム背景色(シリアライズしたもの)
+        public string FormBackColor { get; set; }
+        // リスト背景色(シリアライズしたもの)
+        public string ListBackColor { get; set; }
+        // 文字色(シリアライズしたもの)
+        public string ForeColor { get; set; }
+        // BonDriver名→チューナー名マッピング
+        public Dictionary<string, string> BonDriverNameToTunerName { get; set; }
     }
 
     /// <summary>
@@ -375,6 +402,31 @@ namespace RockbarForEDCB
 
             // ディレクトリと連結して、設定ファイルのフルパスを返す
             return Path.Combine(Path.GetDirectoryName(appFilePath), filename);
+        }
+
+        /// <summary>
+        /// BonDriver名からデフォルトチューナー名を生成する処理
+        /// </summary>
+        /// <param name="bonDriverName">BonDriver名</param>
+        /// <returns>デフォルトチューナー名</returns>
+        public static string GetDefaultTunerName(string bonDriverName)
+        {
+            if (bonDriverName == "チューナー不足")
+            {
+                return "TU不足";
+            }
+            else if (System.Text.RegularExpressions.Regex.IsMatch(bonDriverName, @"_(MLT|S3U|uSUNpTV|Bulldog)[0-9]*\.dll", RegexOptions.IgnoreCase))
+            {
+                return "3波";
+            }
+            else if (System.Text.RegularExpressions.Regex.IsMatch(bonDriverName, @"_S[0-9]*\.dll", RegexOptions.IgnoreCase))
+            {
+                return "BS/CS";
+            }
+            else
+            {
+                return "地デジ";
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,8 +50,13 @@ namespace RockbarForEDCB
         // Rockbarから自動起動したTVTestのプロセス一覧
         private Dictionary<string, System.Diagnostics.Process> tvtestProcesses = new Dictionary<string, System.Diagnostics.Process>();
 
-        //マウスのクリック位置を記憶
+        // マウスのクリック位置を記憶
         private Point mousePoint;
+
+        // 色の設定情報(設定情報から変数にロードしたもの)
+        private Color formBackColor;
+        private Color listBackColor;
+        private Color foreColor;
 
         /// <summary>
         /// コンストラクタ
@@ -64,9 +70,9 @@ namespace RockbarForEDCB
             {
                 rockbarSetting = Toml.ReadFile<RockBarSetting>(RockbarUtility.GetTomlSettingFilePath());
             }
-            catch
+            catch (FileNotFoundException)
             {
-                // TOML設定ファイルが読み込めない場合は空設定で起動
+                // TOML設定ファイルが存在しない場合は準正常系として空設定で起動。それ以外の場合は例外を投げる
                 rockbarSetting = new RockBarSetting();
             }
 
@@ -79,11 +85,8 @@ namespace RockbarForEDCB
                 splitContainer.SplitterDistance = rockbarSetting.SplitterDistance;
             }
 
-            // タスクトレイアイコン表示
-            if (rockbarSetting.ShowTaskTrayIcon)
-            {
-                notifyIcon.Visible = true;
-            }
+            // 設定反映
+            applySetting();
 
             allServiceList = RockbarUtility.GetAllServicesFromSetting();
             favoriteServiceList = RockbarUtility.GetFavoriteServicesFromSetting();
@@ -116,6 +119,9 @@ namespace RockbarForEDCB
 
             // 初回表示
             RefreshEvent(true, true);
+
+            // タイマーを有効化
+            timer.Enabled = true;
         }
 
         /// <summary>
@@ -176,6 +182,74 @@ namespace RockbarForEDCB
         }
 
         /// <summary>
+        /// 設定反映処理
+        /// 主に見た目部分の設定をフォームに反映する。初回起動時・設定変更時に実行
+        /// </summary>
+        private void applySetting()
+        {
+            // タスクトレイアイコン常時表示
+            if (rockbarSetting.ShowTaskTrayIcon)
+            {
+                notifyIcon.Visible = true;
+            }
+            else
+            {
+                // 初回起動時・設定画面からの戻りで格納状態はないはず
+                notifyIcon.Visible = false;
+            }
+
+            // 縦に並べて表示
+            if (rockbarSetting.IsHorizontalSplit)
+            {
+                splitContainer.Orientation = Orientation.Horizontal;
+            }
+            else
+            {
+                splitContainer.Orientation = Orientation.Vertical;
+            }
+
+            // フォント
+            TypeConverter fontConverter = TypeDescriptor.GetConverter(typeof(Font));
+            Font font = (Font) fontConverter.ConvertFromString(rockbarSetting.Font);
+
+            serviceListView.Font = font;
+            tunerListView.Font = font;
+            listContextMenuStrip.Font = font;
+
+            // フォント設定時にチャンネル一覧の2, 3列目の幅を設定(以降固定)
+            // applySetting後に必ずServiceListはクリアされるため、1回2, 3列目だけのダミーデータを追加して列幅調整する
+            String[] data = {
+                "",
+                "00:00-00:00",
+                "◎",
+                ""
+            };
+
+            ListViewItem item = new ListViewItem(data);
+            serviceListView.Items.Add(item);
+            // 2,3列目を内容で広げる
+            serviceListView.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent);
+            serviceListView.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
+
+            adjustListViewColumns(serviceListView);
+            adjustListViewColumns(tunerListView);
+
+            // 色
+            TypeConverter colorConverter = TypeDescriptor.GetConverter(typeof(Color));
+            this.formBackColor = (Color)colorConverter.ConvertFromString(rockbarSetting.FormBackColor);
+            this.listBackColor = (Color)colorConverter.ConvertFromString(rockbarSetting.ListBackColor);
+            this.foreColor = (Color)colorConverter.ConvertFromString(rockbarSetting.ForeColor);
+
+            this.BackColor = this.formBackColor;
+
+            serviceListView.BackColor = this.listBackColor;
+            serviceListView.ForeColor = this.foreColor;
+
+            tunerListView.BackColor = this.listBackColor;
+            tunerListView.ForeColor = this.foreColor;
+        }
+
+        /// <summary>
         /// 描画更新処理
         /// 必要があればEpgTimerSrv通信を行い、チャンネルListView・チューナListViewの表示を更新する。
         /// </summary>
@@ -215,7 +289,6 @@ namespace RockbarForEDCB
                     {
                         allEventMap.Add(RockbarUtility.GetKey(ev.transport_stream_id, ev.service_id, ev.event_id), ev);
                     }
-
                 }
 
                 // チューナーごとの予約一覧取得
@@ -279,27 +352,31 @@ namespace RockbarForEDCB
                     serviceListView.Items.Add(item);
                 }
 
-                filteringLabel.Visible = false;
+                adjustListViewColumns(serviceListView);
 
-                alignListViewColumns(serviceListView);
+                filteringLabel.Visible = false;
 
                 tunerListView.Items.Clear();
 
                 // チューナー表示
                 foreach (var tuner in tunerReserveInfos)
                 {
-                    string name = "";
-
-                    if (tuner.tunerID == 0xffffffff)
+                    string name = null;
+                    
+                    // 設定にチューナー名があれば取得し、なければデフォルト名で表示
+                    if (rockbarSetting.BonDriverNameToTunerName.ContainsKey(tuner.tunerName))
                     {
-                        name = "TU不足";
-                    } else if (tuner.tunerID > 0x10000)
-                    {
-                        name = "地デジ" + (tuner.tunerID - 0x10000).ToString();
+                        name = rockbarSetting.BonDriverNameToTunerName[tuner.tunerName];
                     }
                     else
                     {
-                        name = "BS/CS" + tuner.tunerID.ToString();
+                        name = RockbarUtility.GetDefaultTunerName(tuner.tunerName);
+                    }
+
+                    // 連番付与
+                    if (tuner.tunerID != 0xffffffff)
+                    {
+                        name += (tuner.tunerID & 0xffff).ToString();
                     }
 
                     // 1回キーとチューナー名だけで追加
@@ -310,7 +387,7 @@ namespace RockbarForEDCB
                     tunerListView.Items.Add(item);
                 }
 
-                alignListViewColumns(tunerListView);
+                adjustListViewColumns(tunerListView);
             }
 
             // チャンネル一覧の追加済みアイテムに対して、現在放送中の番組情報を付与する
@@ -360,7 +437,7 @@ namespace RockbarForEDCB
                         switch (reserveStatus)
                         {
                             case ReserveStatus.NONE:
-                                item.BackColor = Color.FromArgb(40, 40, 40);
+                                item.BackColor = this.listBackColor;
                                 break;
                             case ReserveStatus.OK:
                                 item.BackColor = Color.DarkSlateGray;
@@ -380,11 +457,10 @@ namespace RockbarForEDCB
                         item.SubItems[2].Text = "";
                         item.SubItems[3].Text = "";
                         item.ToolTipText = "";
-                        item.BackColor = Color.FromArgb(40, 40, 40);
+                        item.BackColor = this.listBackColor;
                     }
                 }
             }
-
 
             // チューナー一覧の追加済みアイテムに対して、現在録画中の番組情報を付与する
             foreach (var tuner in tunerReserveInfos)
@@ -423,7 +499,7 @@ namespace RockbarForEDCB
                 }
                 else
                 {
-                    item.BackColor = Color.FromArgb(40, 40, 40);
+                    item.BackColor = this.listBackColor;
                 }
             }
         }
@@ -433,16 +509,8 @@ namespace RockbarForEDCB
         /// </summary>
         private void ReloadSetting()
         {
-            // 設定ファイルを書き込んだあとの読み込みなので基本的に例外は発生しないはず
-            try
-            {
-                rockbarSetting = Toml.ReadFile<RockBarSetting>(RockbarUtility.GetTomlSettingFilePath());
-            }
-            catch
-            {
-                // TOML設定ファイルが読み込めない場合は空設定で起動
-                rockbarSetting = new RockBarSetting();
-            }
+            // 設定ファイルを書き込んだあとの読み込みなので基本的に例外は発生しないはず。発生した場合は例外を投げる
+            rockbarSetting = Toml.ReadFile<RockBarSetting>(RockbarUtility.GetTomlSettingFilePath());
 
             allServiceList = RockbarUtility.GetAllServicesFromSetting();
             favoriteServiceList = RockbarUtility.GetFavoriteServicesFromSetting();
@@ -450,7 +518,7 @@ namespace RockbarForEDCB
 
         /// <summary>
         /// フィルタ処理
-        /// チャンネル一覧から、フィルタ文字列にチャンネル名も番組名も一致しないチャンネルを削除して表示更新する
+        /// チャンネル一覧から、フィルタ文字列にチャンネル名も番組名も一致しないチャンネルを削除して表示更新する(大文字・小文字無視)
         /// </summary>
         private void Filter()
         {
@@ -460,7 +528,10 @@ namespace RockbarForEDCB
                 {
                     var item = serviceListView.Items[i];
 
-                    if (item.SubItems[0].Text.IndexOf(filterTextBox.Text) < 0 && item.SubItems[3].Text.IndexOf(filterTextBox.Text) < 0)
+                    if (
+                        item.SubItems[0].Text.IndexOf(filterTextBox.Text, StringComparison.OrdinalIgnoreCase) < 0 &&
+                        item.SubItems[3].Text.IndexOf(filterTextBox.Text, StringComparison.OrdinalIgnoreCase) < 0
+                    )
                     {
                         serviceListView.Items.RemoveAt(i);
                     }
@@ -611,10 +682,10 @@ namespace RockbarForEDCB
         /// リストビューカラム幅調整処理
         /// 1列目を内容に合わせ、最終列コントロールいっぱいまで広げる。
         /// </summary>
-        /// <param name="listView"></param>
-        private void alignListViewColumns(ListView listView)
+        /// <param name="listView">対象リストビュー</param>
+        private void adjustListViewColumns(ListView listView)
         {
-            // 1列目は内容で広げる
+            // 1列目を内容で広げる
             listView.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
 
             // 1列目・最終列以外は固定幅
@@ -936,13 +1007,22 @@ namespace RockbarForEDCB
 
         /// <summary>
         /// ✕ボタン押下処理
-        /// フォームを閉じる
+        /// タスクトレイ格納オプションON時、タスクトレイに格納。そうでない場合、フォームを閉じる
         /// </summary>
         /// <param name="sender">イベントソース</param>
         /// <param name="e">イベントパラメータ</param>
         private void closeButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (rockbarSetting.StoreTaskTrayByClosing)
+            {
+                // 他のオプションにかかわらず、最小化(もどき)をする場合はタスクトレイにアイコンを表示する
+                notifyIcon.Visible = true;
+                this.Visible = false;
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         /// <summary>
@@ -1030,6 +1110,7 @@ namespace RockbarForEDCB
             if (result == DialogResult.OK)
             {
                 ReloadSetting();
+                applySetting();
                 RefreshEvent(true, true);
             }
         }
@@ -1063,14 +1144,40 @@ namespace RockbarForEDCB
         }
 
         /// <summary>
-        /// タスクトレイアイコンクリック処理
-        /// フォームをアクティブにする。
+        /// タスクトレイアイコンマウスボタン押下処理
+        /// トグルオプションONの場合、表示・非表示切り替え＋アクティブ化。それ以外の場合アクテイブ化のみ
         /// </summary>
         /// <param name="sender">イベントソース</param>
         /// <param name="e">イベントパラメータ</param>
-        private void notifyIcon_Click(object sender, EventArgs e)
+        private void notifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            this.Activate();
+            if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                if (this.Visible)
+                {
+                    // フォーム表示時に左クリックした場合はオプションにより挙動切り替え
+                    if (rockbarSetting.ToggleVisibleTaskTrayIconClick)
+                    {
+                        this.Visible = false;
+                    }
+                    else
+                    {
+                        this.Activate();
+                    }
+                }
+                else
+                {
+                    // フォーム非表示時に左クリックした場合は必ず表示
+                    this.Visible = true;
+                    this.Activate();
+
+                    // オプションによりタスクトレイアイコン表示を切り替え
+                    if (! rockbarSetting.ShowTaskTrayIcon)
+                    {
+                        notifyIcon.Visible = false;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -1081,8 +1188,8 @@ namespace RockbarForEDCB
         /// <param name="e">イベントパラメータ</param>
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
-            alignListViewColumns(serviceListView);
-            alignListViewColumns(tunerListView);
+            adjustListViewColumns(serviceListView);
+            adjustListViewColumns(tunerListView);
         }
 
         /// <summary>
@@ -1093,8 +1200,9 @@ namespace RockbarForEDCB
         /// <param name="e">イベントパラメータ</param>
         private void splitContainer_SplitterMoved(object sender, SplitterEventArgs e)
         {
-            alignListViewColumns(serviceListView);
-            alignListViewColumns(tunerListView);
+            adjustListViewColumns(serviceListView);
+            adjustListViewColumns(tunerListView);
         }
+
     }
 }
