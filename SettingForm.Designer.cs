@@ -1093,7 +1093,6 @@ namespace RockbarForEDCB
             // 
             // fontDialog
             // 
-            this.fontDialog.AllowScriptChange = false;
             this.fontDialog.AllowVerticalFonts = false;
             this.fontDialog.MaxSize = 28;
             this.fontDialog.MinSize = 6;
@@ -1167,12 +1166,12 @@ namespace RockbarForEDCB
             // tunerNameNoteLabel
             // 
             this.tunerNameNoteLabel.AutoSize = true;
-            this.tunerNameNoteLabel.Location = new System.Drawing.Point(476, 60);
+            this.tunerNameNoteLabel.Location = new System.Drawing.Point(475, 60);
             this.tunerNameNoteLabel.Name = "tunerNameNoteLabel";
             this.tunerNameNoteLabel.Size = new System.Drawing.Size(317, 48);
             this.tunerNameNoteLabel.TabIndex = 26;
-            this.tunerNameNoteLabel.Text = "※チューナー一覧に表示名+連番(下位2byte)で表示\r\n\r\nデフォルトでBonDriver名から推測した表示名を当て込んでいます。\r\nあっていない場合もあるので" +
-    "適宜更新してください。";
+            this.tunerNameNoteLabel.Text = "※チューナー一覧に表示名+連番(チューナーID下位2byte)で表示\r\n\r\nデフォルトでBonDriver名から推測した表示名を当て込んでいます。\r\nあっていない" +
+    "場合もあるので適宜更新してください。";
             // 
             // tunerNameLabel
             // 
