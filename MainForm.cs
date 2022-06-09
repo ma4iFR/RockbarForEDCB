@@ -226,6 +226,8 @@ namespace RockbarForEDCB
             };
 
             ListViewItem item = new ListViewItem(data);
+            // 調整時に目立つので背景色で隠す
+            item.ForeColor = serviceListView.BackColor;
             serviceListView.Items.Add(item);
             // 2,3列目を内容で広げる
             serviceListView.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent);
