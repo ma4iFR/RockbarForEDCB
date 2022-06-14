@@ -30,6 +30,22 @@ namespace RockbarForEDCB
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingForm));
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            "チャンネル　00:00-00:00　　　通常番組",
+            "test",
+            "test",
+            "test"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("チャンネル　00:00-00:00　◎　正常予約番組");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("チャンネル　00:00-00:00　欠　部分予約番組");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("チャンネル　00:00-00:00　×　予約不可番組");
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
+            "01/01 00:00～00:00  　  通常番組",
+            "test",
+            "test",
+            "test"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("01/01 00:00～00:00  ◎  正常予約番組");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("01/01 00:00～00:00  欠  部分予約番組");
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("01/01 00:00～00:00  ×  予約不可番組");
             this.cancelButton = new System.Windows.Forms.Button();
             this.applyButton = new System.Windows.Forms.Button();
             this.allServiceListView = new System.Windows.Forms.ListView();
@@ -61,6 +77,16 @@ namespace RockbarForEDCB
             this.webLinkUrlLabel = new System.Windows.Forms.Label();
             this.ipAddressTextBox = new System.Windows.Forms.TextBox();
             this.webLinkUrlTextBox = new System.Windows.Forms.TextBox();
+            this.tunerTabPage = new System.Windows.Forms.TabPage();
+            this.tunerNameLabel = new System.Windows.Forms.Label();
+            this.tunerNameNoteLabel = new System.Windows.Forms.Label();
+            this.updateTunerNameButton = new System.Windows.Forms.Button();
+            this.tunerNameTextBox = new System.Windows.Forms.TextBox();
+            this.tunerNameListView = new System.Windows.Forms.ListView();
+            this.tunerNameMarkColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tunerNameTunerIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tunerNameBonDriverNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tunerNameTunerNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.allServiceTabPage = new System.Windows.Forms.TabPage();
             this.selectedServiceListLabel = new System.Windows.Forms.Label();
             this.allServiceListLabel = new System.Windows.Forms.Label();
@@ -105,53 +131,72 @@ namespace RockbarForEDCB
             this.tvtestPathLabel = new System.Windows.Forms.Label();
             this.tvtestOpenButton = new System.Windows.Forms.Button();
             this.tvtestPathTextBox = new System.Windows.Forms.TextBox();
-            this.otherTabPage = new System.Windows.Forms.TabPage();
-            this.colorPreviewLabel = new System.Windows.Forms.Label();
-            this.selectForeColorLabel = new System.Windows.Forms.Label();
-            this.foreColorTextBox = new System.Windows.Forms.TextBox();
-            this.selectForeColorButton = new System.Windows.Forms.Button();
-            this.listBackColorLabel = new System.Windows.Forms.Label();
-            this.listBackColorTextBox = new System.Windows.Forms.TextBox();
-            this.selectListBackColorButton = new System.Windows.Forms.Button();
-            this.formBackColorPanel = new System.Windows.Forms.Panel();
-            this.listBackColorPanel = new System.Windows.Forms.Panel();
-            this.foreColorLabel = new System.Windows.Forms.Label();
-            this.formBackColorLabel = new System.Windows.Forms.Label();
-            this.formBackColorTextBox = new System.Windows.Forms.TextBox();
-            this.selectFormBackColorButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.isHorizontalSplitCheckBox = new System.Windows.Forms.CheckBox();
+            this.listViewContColorTabPage = new System.Windows.Forms.TabPage();
+            this.previewLabel = new System.Windows.Forms.Label();
+            this.fontLabel = new System.Windows.Forms.Label();
             this.fontTextBox = new System.Windows.Forms.TextBox();
             this.selectFontButton = new System.Windows.Forms.Button();
+            this.otherTabPage = new System.Windows.Forms.TabPage();
+            this.isHorizontalSplitCheckBox = new System.Windows.Forms.CheckBox();
             this.toggleVisibleTaskTrayIconClickCheckBox = new System.Windows.Forms.CheckBox();
             this.storeTaskTrayByClosingCheckBox = new System.Windows.Forms.CheckBox();
             this.showTaskTraiIconCheckBox = new System.Windows.Forms.CheckBox();
             this.tvtestOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.tunerTabPage = new System.Windows.Forms.TabPage();
-            this.tunerNameListView = new System.Windows.Forms.ListView();
-            this.tunerNameTunerIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tunerNameBonDriverNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tunerNameTunerNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tunerNameTextBox = new System.Windows.Forms.TextBox();
-            this.updateTunerNameButton = new System.Windows.Forms.Button();
-            this.tunerNameNoteLabel = new System.Windows.Forms.Label();
-            this.tunerNameLabel = new System.Windows.Forms.Label();
-            this.tunerNameMarkColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectFormBackColorButton = new System.Windows.Forms.Button();
+            this.formBackColorTextBox = new System.Windows.Forms.TextBox();
+            this.formBackColorLabel = new System.Windows.Forms.Label();
+            this.previewFormPanel = new System.Windows.Forms.Panel();
+            this.previewListView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.selectListBackColorButton = new System.Windows.Forms.Button();
+            this.listBackColorTextBox = new System.Windows.Forms.TextBox();
+            this.listBackColorLabel = new System.Windows.Forms.Label();
+            this.selectForeColorButton = new System.Windows.Forms.Button();
+            this.foreColorTextBox = new System.Windows.Forms.TextBox();
+            this.foreColorLabel = new System.Windows.Forms.Label();
+            this.selectOkReserveListBackColorButton = new System.Windows.Forms.Button();
+            this.okReserveListBackColorTextBox = new System.Windows.Forms.TextBox();
+            this.okReserveListBackColorLabel = new System.Windows.Forms.Label();
+            this.selectPartialReserveListBackColorButton = new System.Windows.Forms.Button();
+            this.partialReserveListBackColorTextBox = new System.Windows.Forms.TextBox();
+            this.partialReserveListBackColorLabel = new System.Windows.Forms.Label();
+            this.selectNgReserveListBackColorButton = new System.Windows.Forms.Button();
+            this.ngReserveListBackColorTextBox = new System.Windows.Forms.TextBox();
+            this.ngReserveListBackColorLabel = new System.Windows.Forms.Label();
+            this.contextMenuFontColorTabPage = new System.Windows.Forms.TabPage();
+            this.ngReserveMenuBackColorTextBox = new System.Windows.Forms.TextBox();
+            this.selectNgReserveMenuBackColorButton = new System.Windows.Forms.Button();
+            this.partialReserveMenuBackColorLabel = new System.Windows.Forms.Label();
+            this.partialReserveMenuBackColorTextBox = new System.Windows.Forms.TextBox();
+            this.selectPartialReserveMenuBackColorButton = new System.Windows.Forms.Button();
+            this.okReserveMenuBackColorLabel = new System.Windows.Forms.Label();
+            this.okReserveMenuBackColorTextBox = new System.Windows.Forms.TextBox();
+            this.selectOkReserveMenuBackColorButton = new System.Windows.Forms.Button();
+            this.previewMenuListView = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label5 = new System.Windows.Forms.Label();
+            this.menuBackColorLabel = new System.Windows.Forms.Label();
+            this.menuBackColorTextBox = new System.Windows.Forms.TextBox();
+            this.selectMenuBackColorButton = new System.Windows.Forms.Button();
+            this.menuFontLabel = new System.Windows.Forms.Label();
+            this.menuFontTextBox = new System.Windows.Forms.TextBox();
+            this.selectMenuFontButton = new System.Windows.Forms.Button();
+            this.ngReserveMenuBackColorLabel = new System.Windows.Forms.Label();
             this.settingTabControl.SuspendLayout();
             this.edcbLinkageTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.portNumberNumericUpDown)).BeginInit();
+            this.tunerTabPage.SuspendLayout();
             this.allServiceTabPage.SuspendLayout();
             this.favoriteServiceTabPage.SuspendLayout();
             this.tvtestLinkageTabPage.SuspendLayout();
             this.autoStartTargetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.autoCloseMarginNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoOpenMarginNumericUpDown)).BeginInit();
+            this.listViewContColorTabPage.SuspendLayout();
             this.otherTabPage.SuspendLayout();
-            this.formBackColorPanel.SuspendLayout();
-            this.listBackColorPanel.SuspendLayout();
-            this.tunerTabPage.SuspendLayout();
+            this.contextMenuFontColorTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -303,6 +348,8 @@ namespace RockbarForEDCB
             this.settingTabControl.Controls.Add(this.allServiceTabPage);
             this.settingTabControl.Controls.Add(this.favoriteServiceTabPage);
             this.settingTabControl.Controls.Add(this.tvtestLinkageTabPage);
+            this.settingTabControl.Controls.Add(this.listViewContColorTabPage);
+            this.settingTabControl.Controls.Add(this.contextMenuFontColorTabPage);
             this.settingTabControl.Controls.Add(this.otherTabPage);
             this.settingTabControl.Location = new System.Drawing.Point(1, 3);
             this.settingTabControl.Name = "settingTabControl";
@@ -386,7 +433,7 @@ namespace RockbarForEDCB
             this.webLinkUrlExampleLabel.AutoSize = true;
             this.webLinkUrlExampleLabel.Location = new System.Drawing.Point(120, 239);
             this.webLinkUrlExampleLabel.Name = "webLinkUrlExampleLabel";
-            this.webLinkUrlExampleLabel.Size = new System.Drawing.Size(410, 84);
+            this.webLinkUrlExampleLabel.Size = new System.Drawing.Size(452, 84);
             this.webLinkUrlExampleLabel.TabIndex = 11;
             this.webLinkUrlExampleLabel.Text = resources.GetString("webLinkUrlExampleLabel.Text");
             // 
@@ -441,6 +488,95 @@ namespace RockbarForEDCB
             this.webLinkUrlTextBox.Name = "webLinkUrlTextBox";
             this.webLinkUrlTextBox.Size = new System.Drawing.Size(478, 19);
             this.webLinkUrlTextBox.TabIndex = 4;
+            // 
+            // tunerTabPage
+            // 
+            this.tunerTabPage.Controls.Add(this.tunerNameLabel);
+            this.tunerTabPage.Controls.Add(this.tunerNameNoteLabel);
+            this.tunerTabPage.Controls.Add(this.updateTunerNameButton);
+            this.tunerTabPage.Controls.Add(this.tunerNameTextBox);
+            this.tunerTabPage.Controls.Add(this.tunerNameListView);
+            this.tunerTabPage.Location = new System.Drawing.Point(4, 22);
+            this.tunerTabPage.Name = "tunerTabPage";
+            this.tunerTabPage.Size = new System.Drawing.Size(791, 384);
+            this.tunerTabPage.TabIndex = 5;
+            this.tunerTabPage.Text = "チューナー名";
+            this.tunerTabPage.UseVisualStyleBackColor = true;
+            // 
+            // tunerNameLabel
+            // 
+            this.tunerNameLabel.AutoSize = true;
+            this.tunerNameLabel.Location = new System.Drawing.Point(478, 26);
+            this.tunerNameLabel.Name = "tunerNameLabel";
+            this.tunerNameLabel.Size = new System.Drawing.Size(41, 12);
+            this.tunerNameLabel.TabIndex = 27;
+            this.tunerNameLabel.Text = "表示名";
+            // 
+            // tunerNameNoteLabel
+            // 
+            this.tunerNameNoteLabel.AutoSize = true;
+            this.tunerNameNoteLabel.Location = new System.Drawing.Point(475, 60);
+            this.tunerNameNoteLabel.Name = "tunerNameNoteLabel";
+            this.tunerNameNoteLabel.Size = new System.Drawing.Size(317, 48);
+            this.tunerNameNoteLabel.TabIndex = 26;
+            this.tunerNameNoteLabel.Text = "※チューナー一覧に表示名+連番(チューナーID下位2byte)で表示\r\n\r\nデフォルトでBonDriver名から推測した表示名を当て込んでいます。\r\nあっていない" +
+    "場合もあるので適宜更新してください。";
+            // 
+            // updateTunerNameButton
+            // 
+            this.updateTunerNameButton.Location = new System.Drawing.Point(658, 21);
+            this.updateTunerNameButton.Name = "updateTunerNameButton";
+            this.updateTunerNameButton.Size = new System.Drawing.Size(75, 23);
+            this.updateTunerNameButton.TabIndex = 3;
+            this.updateTunerNameButton.Text = "更新";
+            this.updateTunerNameButton.UseVisualStyleBackColor = true;
+            this.updateTunerNameButton.Click += new System.EventHandler(this.updateTunerNameButton_Click);
+            // 
+            // tunerNameTextBox
+            // 
+            this.tunerNameTextBox.Location = new System.Drawing.Point(525, 23);
+            this.tunerNameTextBox.Name = "tunerNameTextBox";
+            this.tunerNameTextBox.Size = new System.Drawing.Size(127, 19);
+            this.tunerNameTextBox.TabIndex = 2;
+            // 
+            // tunerNameListView
+            // 
+            this.tunerNameListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.tunerNameMarkColumnHeader,
+            this.tunerNameTunerIdColumnHeader,
+            this.tunerNameBonDriverNameColumnHeader,
+            this.tunerNameTunerNameColumnHeader});
+            this.tunerNameListView.FullRowSelect = true;
+            this.tunerNameListView.HideSelection = false;
+            this.tunerNameListView.Location = new System.Drawing.Point(7, 12);
+            this.tunerNameListView.MultiSelect = false;
+            this.tunerNameListView.Name = "tunerNameListView";
+            this.tunerNameListView.Size = new System.Drawing.Size(463, 353);
+            this.tunerNameListView.TabIndex = 1;
+            this.tunerNameListView.UseCompatibleStateImageBehavior = false;
+            this.tunerNameListView.View = System.Windows.Forms.View.Details;
+            this.tunerNameListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.tunerNameListView_ColumnClick);
+            this.tunerNameListView.SelectedIndexChanged += new System.EventHandler(this.tunerNameListView_SelectedIndexChanged);
+            // 
+            // tunerNameMarkColumnHeader
+            // 
+            this.tunerNameMarkColumnHeader.Text = "";
+            this.tunerNameMarkColumnHeader.Width = 20;
+            // 
+            // tunerNameTunerIdColumnHeader
+            // 
+            this.tunerNameTunerIdColumnHeader.Text = "チューナーID(上位2byte)";
+            this.tunerNameTunerIdColumnHeader.Width = 130;
+            // 
+            // tunerNameBonDriverNameColumnHeader
+            // 
+            this.tunerNameBonDriverNameColumnHeader.Text = "BonDriver名";
+            this.tunerNameBonDriverNameColumnHeader.Width = 160;
+            // 
+            // tunerNameTunerNameColumnHeader
+            // 
+            this.tunerNameTunerNameColumnHeader.Text = "表示名";
+            this.tunerNameTunerNameColumnHeader.Width = 140;
             // 
             // allServiceTabPage
             // 
@@ -876,23 +1012,79 @@ namespace RockbarForEDCB
             this.tvtestPathTextBox.Size = new System.Drawing.Size(312, 19);
             this.tvtestPathTextBox.TabIndex = 0;
             // 
+            // listViewContColorTabPage
+            // 
+            this.listViewContColorTabPage.Controls.Add(this.ngReserveListBackColorLabel);
+            this.listViewContColorTabPage.Controls.Add(this.ngReserveListBackColorTextBox);
+            this.listViewContColorTabPage.Controls.Add(this.selectNgReserveListBackColorButton);
+            this.listViewContColorTabPage.Controls.Add(this.partialReserveListBackColorLabel);
+            this.listViewContColorTabPage.Controls.Add(this.partialReserveListBackColorTextBox);
+            this.listViewContColorTabPage.Controls.Add(this.selectPartialReserveListBackColorButton);
+            this.listViewContColorTabPage.Controls.Add(this.okReserveListBackColorLabel);
+            this.listViewContColorTabPage.Controls.Add(this.okReserveListBackColorTextBox);
+            this.listViewContColorTabPage.Controls.Add(this.selectOkReserveListBackColorButton);
+            this.listViewContColorTabPage.Controls.Add(this.previewListView);
+            this.listViewContColorTabPage.Controls.Add(this.previewLabel);
+            this.listViewContColorTabPage.Controls.Add(this.foreColorLabel);
+            this.listViewContColorTabPage.Controls.Add(this.foreColorTextBox);
+            this.listViewContColorTabPage.Controls.Add(this.selectForeColorButton);
+            this.listViewContColorTabPage.Controls.Add(this.listBackColorLabel);
+            this.listViewContColorTabPage.Controls.Add(this.listBackColorTextBox);
+            this.listViewContColorTabPage.Controls.Add(this.selectListBackColorButton);
+            this.listViewContColorTabPage.Controls.Add(this.previewFormPanel);
+            this.listViewContColorTabPage.Controls.Add(this.formBackColorLabel);
+            this.listViewContColorTabPage.Controls.Add(this.formBackColorTextBox);
+            this.listViewContColorTabPage.Controls.Add(this.selectFormBackColorButton);
+            this.listViewContColorTabPage.Controls.Add(this.fontLabel);
+            this.listViewContColorTabPage.Controls.Add(this.fontTextBox);
+            this.listViewContColorTabPage.Controls.Add(this.selectFontButton);
+            this.listViewContColorTabPage.Location = new System.Drawing.Point(4, 22);
+            this.listViewContColorTabPage.Name = "listViewContColorTabPage";
+            this.listViewContColorTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.listViewContColorTabPage.Size = new System.Drawing.Size(791, 384);
+            this.listViewContColorTabPage.TabIndex = 6;
+            this.listViewContColorTabPage.Text = "フォント・色";
+            this.listViewContColorTabPage.UseVisualStyleBackColor = true;
+            // 
+            // previewLabel
+            // 
+            this.previewLabel.AutoSize = true;
+            this.previewLabel.Location = new System.Drawing.Point(407, 60);
+            this.previewLabel.Name = "previewLabel";
+            this.previewLabel.Size = new System.Drawing.Size(49, 12);
+            this.previewLabel.TabIndex = 51;
+            this.previewLabel.Text = "プレビュー";
+            // 
+            // fontLabel
+            // 
+            this.fontLabel.AutoSize = true;
+            this.fontLabel.Location = new System.Drawing.Point(102, 15);
+            this.fontLabel.Name = "fontLabel";
+            this.fontLabel.Size = new System.Drawing.Size(38, 12);
+            this.fontLabel.TabIndex = 40;
+            this.fontLabel.Text = "フォント";
+            // 
+            // fontTextBox
+            // 
+            this.fontTextBox.Location = new System.Drawing.Point(148, 12);
+            this.fontTextBox.Name = "fontTextBox";
+            this.fontTextBox.ReadOnly = true;
+            this.fontTextBox.Size = new System.Drawing.Size(302, 19);
+            this.fontTextBox.TabIndex = 39;
+            // 
+            // selectFontButton
+            // 
+            this.selectFontButton.Location = new System.Drawing.Point(456, 10);
+            this.selectFontButton.Name = "selectFontButton";
+            this.selectFontButton.Size = new System.Drawing.Size(75, 23);
+            this.selectFontButton.TabIndex = 38;
+            this.selectFontButton.Text = "選択";
+            this.selectFontButton.UseVisualStyleBackColor = true;
+            this.selectFontButton.Click += new System.EventHandler(this.selectFontButton_Click);
+            // 
             // otherTabPage
             // 
-            this.otherTabPage.Controls.Add(this.colorPreviewLabel);
-            this.otherTabPage.Controls.Add(this.selectForeColorLabel);
-            this.otherTabPage.Controls.Add(this.foreColorTextBox);
-            this.otherTabPage.Controls.Add(this.selectForeColorButton);
-            this.otherTabPage.Controls.Add(this.listBackColorLabel);
-            this.otherTabPage.Controls.Add(this.listBackColorTextBox);
-            this.otherTabPage.Controls.Add(this.selectListBackColorButton);
-            this.otherTabPage.Controls.Add(this.formBackColorPanel);
-            this.otherTabPage.Controls.Add(this.formBackColorLabel);
-            this.otherTabPage.Controls.Add(this.formBackColorTextBox);
-            this.otherTabPage.Controls.Add(this.selectFormBackColorButton);
-            this.otherTabPage.Controls.Add(this.label1);
             this.otherTabPage.Controls.Add(this.isHorizontalSplitCheckBox);
-            this.otherTabPage.Controls.Add(this.fontTextBox);
-            this.otherTabPage.Controls.Add(this.selectFontButton);
             this.otherTabPage.Controls.Add(this.toggleVisibleTaskTrayIconClickCheckBox);
             this.otherTabPage.Controls.Add(this.storeTaskTrayByClosingCheckBox);
             this.otherTabPage.Controls.Add(this.showTaskTraiIconCheckBox);
@@ -903,130 +1095,6 @@ namespace RockbarForEDCB
             this.otherTabPage.Text = "その他";
             this.otherTabPage.UseVisualStyleBackColor = true;
             // 
-            // colorPreviewLabel
-            // 
-            this.colorPreviewLabel.AutoSize = true;
-            this.colorPreviewLabel.Location = new System.Drawing.Point(406, 168);
-            this.colorPreviewLabel.Name = "colorPreviewLabel";
-            this.colorPreviewLabel.Size = new System.Drawing.Size(49, 12);
-            this.colorPreviewLabel.TabIndex = 27;
-            this.colorPreviewLabel.Text = "プレビュー";
-            // 
-            // selectForeColorLabel
-            // 
-            this.selectForeColorLabel.AutoSize = true;
-            this.selectForeColorLabel.Location = new System.Drawing.Point(48, 232);
-            this.selectForeColorLabel.Name = "selectForeColorLabel";
-            this.selectForeColorLabel.Size = new System.Drawing.Size(41, 12);
-            this.selectForeColorLabel.TabIndex = 26;
-            this.selectForeColorLabel.Text = "文字色";
-            // 
-            // foreColorTextBox
-            // 
-            this.foreColorTextBox.Location = new System.Drawing.Point(100, 229);
-            this.foreColorTextBox.Name = "foreColorTextBox";
-            this.foreColorTextBox.ReadOnly = true;
-            this.foreColorTextBox.Size = new System.Drawing.Size(136, 19);
-            this.foreColorTextBox.TabIndex = 25;
-            // 
-            // selectForeColorButton
-            // 
-            this.selectForeColorButton.Location = new System.Drawing.Point(242, 227);
-            this.selectForeColorButton.Name = "selectForeColorButton";
-            this.selectForeColorButton.Size = new System.Drawing.Size(75, 23);
-            this.selectForeColorButton.TabIndex = 24;
-            this.selectForeColorButton.Text = "選択";
-            this.selectForeColorButton.UseVisualStyleBackColor = true;
-            this.selectForeColorButton.Click += new System.EventHandler(this.selectForeColorButton_Click);
-            // 
-            // listBackColorLabel
-            // 
-            this.listBackColorLabel.AutoSize = true;
-            this.listBackColorLabel.Location = new System.Drawing.Point(24, 197);
-            this.listBackColorLabel.Name = "listBackColorLabel";
-            this.listBackColorLabel.Size = new System.Drawing.Size(65, 12);
-            this.listBackColorLabel.TabIndex = 23;
-            this.listBackColorLabel.Text = "リスト背景色";
-            // 
-            // listBackColorTextBox
-            // 
-            this.listBackColorTextBox.Location = new System.Drawing.Point(100, 194);
-            this.listBackColorTextBox.Name = "listBackColorTextBox";
-            this.listBackColorTextBox.ReadOnly = true;
-            this.listBackColorTextBox.Size = new System.Drawing.Size(136, 19);
-            this.listBackColorTextBox.TabIndex = 22;
-            // 
-            // selectListBackColorButton
-            // 
-            this.selectListBackColorButton.Location = new System.Drawing.Point(242, 192);
-            this.selectListBackColorButton.Name = "selectListBackColorButton";
-            this.selectListBackColorButton.Size = new System.Drawing.Size(75, 23);
-            this.selectListBackColorButton.TabIndex = 21;
-            this.selectListBackColorButton.Text = "選択";
-            this.selectListBackColorButton.UseVisualStyleBackColor = true;
-            this.selectListBackColorButton.Click += new System.EventHandler(this.selectListBackColorButton_Click);
-            // 
-            // formBackColorPanel
-            // 
-            this.formBackColorPanel.Controls.Add(this.listBackColorPanel);
-            this.formBackColorPanel.Location = new System.Drawing.Point(408, 191);
-            this.formBackColorPanel.Name = "formBackColorPanel";
-            this.formBackColorPanel.Size = new System.Drawing.Size(129, 39);
-            this.formBackColorPanel.TabIndex = 20;
-            // 
-            // listBackColorPanel
-            // 
-            this.listBackColorPanel.Controls.Add(this.foreColorLabel);
-            this.listBackColorPanel.Location = new System.Drawing.Point(16, 15);
-            this.listBackColorPanel.Name = "listBackColorPanel";
-            this.listBackColorPanel.Size = new System.Drawing.Size(113, 24);
-            this.listBackColorPanel.TabIndex = 21;
-            // 
-            // foreColorLabel
-            // 
-            this.foreColorLabel.AutoSize = true;
-            this.foreColorLabel.Location = new System.Drawing.Point(4, 5);
-            this.foreColorLabel.Name = "foreColorLabel";
-            this.foreColorLabel.Size = new System.Drawing.Size(64, 12);
-            this.foreColorLabel.TabIndex = 0;
-            this.foreColorLabel.Text = "ＮＨＫ総合１";
-            // 
-            // formBackColorLabel
-            // 
-            this.formBackColorLabel.AutoSize = true;
-            this.formBackColorLabel.Location = new System.Drawing.Point(12, 162);
-            this.formBackColorLabel.Name = "formBackColorLabel";
-            this.formBackColorLabel.Size = new System.Drawing.Size(77, 12);
-            this.formBackColorLabel.TabIndex = 19;
-            this.formBackColorLabel.Text = "フォーム背景色";
-            // 
-            // formBackColorTextBox
-            // 
-            this.formBackColorTextBox.Location = new System.Drawing.Point(100, 159);
-            this.formBackColorTextBox.Name = "formBackColorTextBox";
-            this.formBackColorTextBox.ReadOnly = true;
-            this.formBackColorTextBox.Size = new System.Drawing.Size(136, 19);
-            this.formBackColorTextBox.TabIndex = 18;
-            // 
-            // selectFormBackColorButton
-            // 
-            this.selectFormBackColorButton.Location = new System.Drawing.Point(242, 157);
-            this.selectFormBackColorButton.Name = "selectFormBackColorButton";
-            this.selectFormBackColorButton.Size = new System.Drawing.Size(75, 23);
-            this.selectFormBackColorButton.TabIndex = 17;
-            this.selectFormBackColorButton.Text = "選択";
-            this.selectFormBackColorButton.UseVisualStyleBackColor = true;
-            this.selectFormBackColorButton.Click += new System.EventHandler(this.selectFormBackColorButton_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 124);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 12);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "フォント";
-            // 
             // isHorizontalSplitCheckBox
             // 
             this.isHorizontalSplitCheckBox.AutoSize = true;
@@ -1036,24 +1104,6 @@ namespace RockbarForEDCB
             this.isHorizontalSplitCheckBox.TabIndex = 15;
             this.isHorizontalSplitCheckBox.Text = "一覧を縦に並べて表示";
             this.isHorizontalSplitCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // fontTextBox
-            // 
-            this.fontTextBox.Location = new System.Drawing.Point(100, 121);
-            this.fontTextBox.Name = "fontTextBox";
-            this.fontTextBox.ReadOnly = true;
-            this.fontTextBox.Size = new System.Drawing.Size(302, 19);
-            this.fontTextBox.TabIndex = 14;
-            // 
-            // selectFontButton
-            // 
-            this.selectFontButton.Location = new System.Drawing.Point(408, 119);
-            this.selectFontButton.Name = "selectFontButton";
-            this.selectFontButton.Size = new System.Drawing.Size(75, 23);
-            this.selectFontButton.TabIndex = 13;
-            this.selectFontButton.Text = "選択";
-            this.selectFontButton.UseVisualStyleBackColor = true;
-            this.selectFontButton.Click += new System.EventHandler(this.selectFontButton_Click);
             // 
             // toggleVisibleTaskTrayIconClickCheckBox
             // 
@@ -1098,94 +1148,399 @@ namespace RockbarForEDCB
             this.fontDialog.MinSize = 6;
             this.fontDialog.ShowEffects = false;
             // 
-            // tunerTabPage
+            // selectFormBackColorButton
             // 
-            this.tunerTabPage.Controls.Add(this.tunerNameLabel);
-            this.tunerTabPage.Controls.Add(this.tunerNameNoteLabel);
-            this.tunerTabPage.Controls.Add(this.updateTunerNameButton);
-            this.tunerTabPage.Controls.Add(this.tunerNameTextBox);
-            this.tunerTabPage.Controls.Add(this.tunerNameListView);
-            this.tunerTabPage.Location = new System.Drawing.Point(4, 22);
-            this.tunerTabPage.Name = "tunerTabPage";
-            this.tunerTabPage.Size = new System.Drawing.Size(791, 384);
-            this.tunerTabPage.TabIndex = 5;
-            this.tunerTabPage.Text = "チューナー名";
-            this.tunerTabPage.UseVisualStyleBackColor = true;
+            this.selectFormBackColorButton.Location = new System.Drawing.Point(290, 48);
+            this.selectFormBackColorButton.Name = "selectFormBackColorButton";
+            this.selectFormBackColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectFormBackColorButton.TabIndex = 41;
+            this.selectFormBackColorButton.Text = "選択";
+            this.selectFormBackColorButton.UseVisualStyleBackColor = true;
+            this.selectFormBackColorButton.Click += new System.EventHandler(this.selectFormBackColorButton_Click);
             // 
-            // tunerNameListView
+            // formBackColorTextBox
             // 
-            this.tunerNameListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.tunerNameMarkColumnHeader,
-            this.tunerNameTunerIdColumnHeader,
-            this.tunerNameBonDriverNameColumnHeader,
-            this.tunerNameTunerNameColumnHeader});
-            this.tunerNameListView.FullRowSelect = true;
-            this.tunerNameListView.HideSelection = false;
-            this.tunerNameListView.Location = new System.Drawing.Point(7, 12);
-            this.tunerNameListView.MultiSelect = false;
-            this.tunerNameListView.Name = "tunerNameListView";
-            this.tunerNameListView.Size = new System.Drawing.Size(463, 353);
-            this.tunerNameListView.TabIndex = 1;
-            this.tunerNameListView.UseCompatibleStateImageBehavior = false;
-            this.tunerNameListView.View = System.Windows.Forms.View.Details;
-            this.tunerNameListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.tunerNameListView_ColumnClick);
-            this.tunerNameListView.SelectedIndexChanged += new System.EventHandler(this.tunerNameListView_SelectedIndexChanged);
+            this.formBackColorTextBox.Location = new System.Drawing.Point(148, 50);
+            this.formBackColorTextBox.Name = "formBackColorTextBox";
+            this.formBackColorTextBox.ReadOnly = true;
+            this.formBackColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.formBackColorTextBox.TabIndex = 42;
             // 
-            // tunerNameTunerIdColumnHeader
+            // formBackColorLabel
             // 
-            this.tunerNameTunerIdColumnHeader.Text = "チューナーID(上位2byte)";
-            this.tunerNameTunerIdColumnHeader.Width = 130;
+            this.formBackColorLabel.AutoSize = true;
+            this.formBackColorLabel.Location = new System.Drawing.Point(63, 53);
+            this.formBackColorLabel.Name = "formBackColorLabel";
+            this.formBackColorLabel.Size = new System.Drawing.Size(77, 12);
+            this.formBackColorLabel.TabIndex = 43;
+            this.formBackColorLabel.Text = "フォーム背景色";
             // 
-            // tunerNameBonDriverNameColumnHeader
+            // previewFormPanel
             // 
-            this.tunerNameBonDriverNameColumnHeader.Text = "BonDriver名";
-            this.tunerNameBonDriverNameColumnHeader.Width = 160;
+            this.previewFormPanel.AutoSize = true;
+            this.previewFormPanel.Location = new System.Drawing.Point(409, 77);
+            this.previewFormPanel.Name = "previewFormPanel";
+            this.previewFormPanel.Size = new System.Drawing.Size(337, 171);
+            this.previewFormPanel.TabIndex = 44;
             // 
-            // tunerNameTunerNameColumnHeader
+            // previewListView
             // 
-            this.tunerNameTunerNameColumnHeader.Text = "表示名";
-            this.tunerNameTunerNameColumnHeader.Width = 140;
+            this.previewListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.previewListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.previewListView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(250)))), ((int)(((byte)(140)))));
+            this.previewListView.FullRowSelect = true;
+            this.previewListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.previewListView.HideSelection = false;
+            this.previewListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem9,
+            listViewItem10,
+            listViewItem11,
+            listViewItem12});
+            this.previewListView.Location = new System.Drawing.Point(423, 90);
+            this.previewListView.MultiSelect = false;
+            this.previewListView.Name = "previewListView";
+            this.previewListView.ShowItemToolTips = true;
+            this.previewListView.Size = new System.Drawing.Size(323, 158);
+            this.previewListView.TabIndex = 52;
+            this.previewListView.UseCompatibleStateImageBehavior = false;
+            this.previewListView.View = System.Windows.Forms.View.Details;
             // 
-            // tunerNameTextBox
+            // columnHeader1
             // 
-            this.tunerNameTextBox.Location = new System.Drawing.Point(525, 23);
-            this.tunerNameTextBox.Name = "tunerNameTextBox";
-            this.tunerNameTextBox.Size = new System.Drawing.Size(127, 19);
-            this.tunerNameTextBox.TabIndex = 2;
+            this.columnHeader1.Width = 319;
             // 
-            // updateTunerNameButton
+            // selectListBackColorButton
             // 
-            this.updateTunerNameButton.Location = new System.Drawing.Point(658, 21);
-            this.updateTunerNameButton.Name = "updateTunerNameButton";
-            this.updateTunerNameButton.Size = new System.Drawing.Size(75, 23);
-            this.updateTunerNameButton.TabIndex = 3;
-            this.updateTunerNameButton.Text = "更新";
-            this.updateTunerNameButton.UseVisualStyleBackColor = true;
-            this.updateTunerNameButton.Click += new System.EventHandler(this.updateTunerNameButton_Click);
+            this.selectListBackColorButton.Location = new System.Drawing.Point(290, 124);
+            this.selectListBackColorButton.Name = "selectListBackColorButton";
+            this.selectListBackColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectListBackColorButton.TabIndex = 45;
+            this.selectListBackColorButton.Text = "選択";
+            this.selectListBackColorButton.UseVisualStyleBackColor = true;
+            this.selectListBackColorButton.Click += new System.EventHandler(this.selectListBackColorButton_Click);
             // 
-            // tunerNameNoteLabel
+            // listBackColorTextBox
             // 
-            this.tunerNameNoteLabel.AutoSize = true;
-            this.tunerNameNoteLabel.Location = new System.Drawing.Point(475, 60);
-            this.tunerNameNoteLabel.Name = "tunerNameNoteLabel";
-            this.tunerNameNoteLabel.Size = new System.Drawing.Size(317, 48);
-            this.tunerNameNoteLabel.TabIndex = 26;
-            this.tunerNameNoteLabel.Text = "※チューナー一覧に表示名+連番(チューナーID下位2byte)で表示\r\n\r\nデフォルトでBonDriver名から推測した表示名を当て込んでいます。\r\nあっていない" +
-    "場合もあるので適宜更新してください。";
+            this.listBackColorTextBox.Location = new System.Drawing.Point(148, 126);
+            this.listBackColorTextBox.Name = "listBackColorTextBox";
+            this.listBackColorTextBox.ReadOnly = true;
+            this.listBackColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.listBackColorTextBox.TabIndex = 46;
             // 
-            // tunerNameLabel
+            // listBackColorLabel
             // 
-            this.tunerNameLabel.AutoSize = true;
-            this.tunerNameLabel.Location = new System.Drawing.Point(478, 26);
-            this.tunerNameLabel.Name = "tunerNameLabel";
-            this.tunerNameLabel.Size = new System.Drawing.Size(41, 12);
-            this.tunerNameLabel.TabIndex = 27;
-            this.tunerNameLabel.Text = "表示名";
+            this.listBackColorLabel.AutoSize = true;
+            this.listBackColorLabel.Location = new System.Drawing.Point(75, 129);
+            this.listBackColorLabel.Name = "listBackColorLabel";
+            this.listBackColorLabel.Size = new System.Drawing.Size(65, 12);
+            this.listBackColorLabel.TabIndex = 47;
+            this.listBackColorLabel.Text = "リスト背景色";
             // 
-            // tunerNameMarkColumnHeader
+            // selectForeColorButton
             // 
-            this.tunerNameMarkColumnHeader.Text = "";
-            this.tunerNameMarkColumnHeader.Width = 20;
+            this.selectForeColorButton.Location = new System.Drawing.Point(290, 86);
+            this.selectForeColorButton.Name = "selectForeColorButton";
+            this.selectForeColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectForeColorButton.TabIndex = 48;
+            this.selectForeColorButton.Text = "選択";
+            this.selectForeColorButton.UseVisualStyleBackColor = true;
+            this.selectForeColorButton.Click += new System.EventHandler(this.selectForeColorButton_Click);
+            // 
+            // foreColorTextBox
+            // 
+            this.foreColorTextBox.Location = new System.Drawing.Point(148, 88);
+            this.foreColorTextBox.Name = "foreColorTextBox";
+            this.foreColorTextBox.ReadOnly = true;
+            this.foreColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.foreColorTextBox.TabIndex = 49;
+            // 
+            // foreColorLabel
+            // 
+            this.foreColorLabel.AutoSize = true;
+            this.foreColorLabel.Location = new System.Drawing.Point(99, 91);
+            this.foreColorLabel.Name = "foreColorLabel";
+            this.foreColorLabel.Size = new System.Drawing.Size(41, 12);
+            this.foreColorLabel.TabIndex = 50;
+            this.foreColorLabel.Text = "文字色";
+            // 
+            // selectOkReserveListBackColorButton
+            // 
+            this.selectOkReserveListBackColorButton.Location = new System.Drawing.Point(290, 162);
+            this.selectOkReserveListBackColorButton.Name = "selectOkReserveListBackColorButton";
+            this.selectOkReserveListBackColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectOkReserveListBackColorButton.TabIndex = 53;
+            this.selectOkReserveListBackColorButton.Text = "選択";
+            this.selectOkReserveListBackColorButton.UseVisualStyleBackColor = true;
+            this.selectOkReserveListBackColorButton.Click += new System.EventHandler(this.selectOkReserveListBackColorButton_Click);
+            // 
+            // okReserveListBackColorTextBox
+            // 
+            this.okReserveListBackColorTextBox.Location = new System.Drawing.Point(148, 164);
+            this.okReserveListBackColorTextBox.Name = "okReserveListBackColorTextBox";
+            this.okReserveListBackColorTextBox.ReadOnly = true;
+            this.okReserveListBackColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.okReserveListBackColorTextBox.TabIndex = 54;
+            // 
+            // okReserveListBackColorLabel
+            // 
+            this.okReserveListBackColorLabel.AutoSize = true;
+            this.okReserveListBackColorLabel.Location = new System.Drawing.Point(19, 167);
+            this.okReserveListBackColorLabel.Name = "okReserveListBackColorLabel";
+            this.okReserveListBackColorLabel.Size = new System.Drawing.Size(121, 12);
+            this.okReserveListBackColorLabel.TabIndex = 55;
+            this.okReserveListBackColorLabel.Text = "リスト背景色(正常予約)";
+            // 
+            // selectPartialReserveListBackColorButton
+            // 
+            this.selectPartialReserveListBackColorButton.Location = new System.Drawing.Point(290, 200);
+            this.selectPartialReserveListBackColorButton.Name = "selectPartialReserveListBackColorButton";
+            this.selectPartialReserveListBackColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectPartialReserveListBackColorButton.TabIndex = 56;
+            this.selectPartialReserveListBackColorButton.Text = "選択";
+            this.selectPartialReserveListBackColorButton.UseVisualStyleBackColor = true;
+            this.selectPartialReserveListBackColorButton.Click += new System.EventHandler(this.selectPartialReserveListBackColorButton_Click);
+            // 
+            // partialReserveListBackColorTextBox
+            // 
+            this.partialReserveListBackColorTextBox.Location = new System.Drawing.Point(148, 202);
+            this.partialReserveListBackColorTextBox.Name = "partialReserveListBackColorTextBox";
+            this.partialReserveListBackColorTextBox.ReadOnly = true;
+            this.partialReserveListBackColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.partialReserveListBackColorTextBox.TabIndex = 57;
+            // 
+            // partialReserveListBackColorLabel
+            // 
+            this.partialReserveListBackColorLabel.AutoSize = true;
+            this.partialReserveListBackColorLabel.Location = new System.Drawing.Point(19, 205);
+            this.partialReserveListBackColorLabel.Name = "partialReserveListBackColorLabel";
+            this.partialReserveListBackColorLabel.Size = new System.Drawing.Size(121, 12);
+            this.partialReserveListBackColorLabel.TabIndex = 58;
+            this.partialReserveListBackColorLabel.Text = "リスト背景色(部分予約)";
+            // 
+            // selectNgReserveListBackColorButton
+            // 
+            this.selectNgReserveListBackColorButton.Location = new System.Drawing.Point(290, 238);
+            this.selectNgReserveListBackColorButton.Name = "selectNgReserveListBackColorButton";
+            this.selectNgReserveListBackColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectNgReserveListBackColorButton.TabIndex = 59;
+            this.selectNgReserveListBackColorButton.Text = "選択";
+            this.selectNgReserveListBackColorButton.UseVisualStyleBackColor = true;
+            this.selectNgReserveListBackColorButton.Click += new System.EventHandler(this.selectNgReserveListBackColorButton_Click);
+            // 
+            // ngReserveListBackColorTextBox
+            // 
+            this.ngReserveListBackColorTextBox.Location = new System.Drawing.Point(148, 240);
+            this.ngReserveListBackColorTextBox.Name = "ngReserveListBackColorTextBox";
+            this.ngReserveListBackColorTextBox.ReadOnly = true;
+            this.ngReserveListBackColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.ngReserveListBackColorTextBox.TabIndex = 60;
+            // 
+            // ngReserveListBackColorLabel
+            // 
+            this.ngReserveListBackColorLabel.AutoSize = true;
+            this.ngReserveListBackColorLabel.Location = new System.Drawing.Point(19, 243);
+            this.ngReserveListBackColorLabel.Name = "ngReserveListBackColorLabel";
+            this.ngReserveListBackColorLabel.Size = new System.Drawing.Size(121, 12);
+            this.ngReserveListBackColorLabel.TabIndex = 61;
+            this.ngReserveListBackColorLabel.Text = "リスト背景色(予約不可)";
+            // 
+            // contextMenuFontColorTabPage
+            // 
+            this.contextMenuFontColorTabPage.Controls.Add(this.ngReserveMenuBackColorLabel);
+            this.contextMenuFontColorTabPage.Controls.Add(this.ngReserveMenuBackColorTextBox);
+            this.contextMenuFontColorTabPage.Controls.Add(this.selectNgReserveMenuBackColorButton);
+            this.contextMenuFontColorTabPage.Controls.Add(this.partialReserveMenuBackColorLabel);
+            this.contextMenuFontColorTabPage.Controls.Add(this.partialReserveMenuBackColorTextBox);
+            this.contextMenuFontColorTabPage.Controls.Add(this.selectPartialReserveMenuBackColorButton);
+            this.contextMenuFontColorTabPage.Controls.Add(this.okReserveMenuBackColorLabel);
+            this.contextMenuFontColorTabPage.Controls.Add(this.okReserveMenuBackColorTextBox);
+            this.contextMenuFontColorTabPage.Controls.Add(this.selectOkReserveMenuBackColorButton);
+            this.contextMenuFontColorTabPage.Controls.Add(this.previewMenuListView);
+            this.contextMenuFontColorTabPage.Controls.Add(this.label5);
+            this.contextMenuFontColorTabPage.Controls.Add(this.menuBackColorLabel);
+            this.contextMenuFontColorTabPage.Controls.Add(this.menuBackColorTextBox);
+            this.contextMenuFontColorTabPage.Controls.Add(this.selectMenuBackColorButton);
+            this.contextMenuFontColorTabPage.Controls.Add(this.menuFontLabel);
+            this.contextMenuFontColorTabPage.Controls.Add(this.menuFontTextBox);
+            this.contextMenuFontColorTabPage.Controls.Add(this.selectMenuFontButton);
+            this.contextMenuFontColorTabPage.Location = new System.Drawing.Point(4, 22);
+            this.contextMenuFontColorTabPage.Name = "contextMenuFontColorTabPage";
+            this.contextMenuFontColorTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.contextMenuFontColorTabPage.Size = new System.Drawing.Size(791, 384);
+            this.contextMenuFontColorTabPage.TabIndex = 7;
+            this.contextMenuFontColorTabPage.Text = "フォント・色(右クリックメニュー)";
+            this.contextMenuFontColorTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ngReserveMenuBackColorTextBox
+            // 
+            this.ngReserveMenuBackColorTextBox.Location = new System.Drawing.Point(148, 164);
+            this.ngReserveMenuBackColorTextBox.Name = "ngReserveMenuBackColorTextBox";
+            this.ngReserveMenuBackColorTextBox.ReadOnly = true;
+            this.ngReserveMenuBackColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.ngReserveMenuBackColorTextBox.TabIndex = 84;
+            // 
+            // selectNgReserveMenuBackColorButton
+            // 
+            this.selectNgReserveMenuBackColorButton.Location = new System.Drawing.Point(290, 162);
+            this.selectNgReserveMenuBackColorButton.Name = "selectNgReserveMenuBackColorButton";
+            this.selectNgReserveMenuBackColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectNgReserveMenuBackColorButton.TabIndex = 83;
+            this.selectNgReserveMenuBackColorButton.Text = "選択";
+            this.selectNgReserveMenuBackColorButton.UseVisualStyleBackColor = true;
+            this.selectNgReserveMenuBackColorButton.Click += new System.EventHandler(this.selectNgReserveMenuBackColorButton_Click);
+            // 
+            // partialReserveMenuBackColorLabel
+            // 
+            this.partialReserveMenuBackColorLabel.AutoSize = true;
+            this.partialReserveMenuBackColorLabel.Location = new System.Drawing.Point(7, 129);
+            this.partialReserveMenuBackColorLabel.Name = "partialReserveMenuBackColorLabel";
+            this.partialReserveMenuBackColorLabel.Size = new System.Drawing.Size(132, 12);
+            this.partialReserveMenuBackColorLabel.TabIndex = 82;
+            this.partialReserveMenuBackColorLabel.Text = "メニュー背景色(部分予約)";
+            // 
+            // partialReserveMenuBackColorTextBox
+            // 
+            this.partialReserveMenuBackColorTextBox.Location = new System.Drawing.Point(148, 126);
+            this.partialReserveMenuBackColorTextBox.Name = "partialReserveMenuBackColorTextBox";
+            this.partialReserveMenuBackColorTextBox.ReadOnly = true;
+            this.partialReserveMenuBackColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.partialReserveMenuBackColorTextBox.TabIndex = 81;
+            // 
+            // selectPartialReserveMenuBackColorButton
+            // 
+            this.selectPartialReserveMenuBackColorButton.Location = new System.Drawing.Point(290, 124);
+            this.selectPartialReserveMenuBackColorButton.Name = "selectPartialReserveMenuBackColorButton";
+            this.selectPartialReserveMenuBackColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectPartialReserveMenuBackColorButton.TabIndex = 80;
+            this.selectPartialReserveMenuBackColorButton.Text = "選択";
+            this.selectPartialReserveMenuBackColorButton.UseVisualStyleBackColor = true;
+            this.selectPartialReserveMenuBackColorButton.Click += new System.EventHandler(this.selectPartialReserveMenuBackColorButton_Click);
+            // 
+            // okReserveMenuBackColorLabel
+            // 
+            this.okReserveMenuBackColorLabel.AutoSize = true;
+            this.okReserveMenuBackColorLabel.Location = new System.Drawing.Point(7, 91);
+            this.okReserveMenuBackColorLabel.Name = "okReserveMenuBackColorLabel";
+            this.okReserveMenuBackColorLabel.Size = new System.Drawing.Size(132, 12);
+            this.okReserveMenuBackColorLabel.TabIndex = 79;
+            this.okReserveMenuBackColorLabel.Text = "メニュー背景色(正常予約)";
+            // 
+            // okReserveMenuBackColorTextBox
+            // 
+            this.okReserveMenuBackColorTextBox.Location = new System.Drawing.Point(148, 88);
+            this.okReserveMenuBackColorTextBox.Name = "okReserveMenuBackColorTextBox";
+            this.okReserveMenuBackColorTextBox.ReadOnly = true;
+            this.okReserveMenuBackColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.okReserveMenuBackColorTextBox.TabIndex = 78;
+            // 
+            // selectOkReserveMenuBackColorButton
+            // 
+            this.selectOkReserveMenuBackColorButton.Location = new System.Drawing.Point(290, 86);
+            this.selectOkReserveMenuBackColorButton.Name = "selectOkReserveMenuBackColorButton";
+            this.selectOkReserveMenuBackColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectOkReserveMenuBackColorButton.TabIndex = 77;
+            this.selectOkReserveMenuBackColorButton.Text = "選択";
+            this.selectOkReserveMenuBackColorButton.UseVisualStyleBackColor = true;
+            this.selectOkReserveMenuBackColorButton.Click += new System.EventHandler(this.selectOkReserveMenuBackColorButton_Click);
+            // 
+            // previewMenuListView
+            // 
+            this.previewMenuListView.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.previewMenuListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2});
+            this.previewMenuListView.ForeColor = System.Drawing.Color.Black;
+            this.previewMenuListView.FullRowSelect = true;
+            this.previewMenuListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.previewMenuListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem13,
+            listViewItem14,
+            listViewItem15,
+            listViewItem16});
+            this.previewMenuListView.Location = new System.Drawing.Point(409, 75);
+            this.previewMenuListView.MultiSelect = false;
+            this.previewMenuListView.Name = "previewMenuListView";
+            this.previewMenuListView.ShowItemToolTips = true;
+            this.previewMenuListView.Size = new System.Drawing.Size(323, 158);
+            this.previewMenuListView.TabIndex = 76;
+            this.previewMenuListView.UseCompatibleStateImageBehavior = false;
+            this.previewMenuListView.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 319;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(407, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 12);
+            this.label5.TabIndex = 75;
+            this.label5.Text = "プレビュー";
+            // 
+            // menuBackColorLabel
+            // 
+            this.menuBackColorLabel.AutoSize = true;
+            this.menuBackColorLabel.Location = new System.Drawing.Point(63, 53);
+            this.menuBackColorLabel.Name = "menuBackColorLabel";
+            this.menuBackColorLabel.Size = new System.Drawing.Size(76, 12);
+            this.menuBackColorLabel.TabIndex = 74;
+            this.menuBackColorLabel.Text = "メニュー背景色";
+            // 
+            // menuBackColorTextBox
+            // 
+            this.menuBackColorTextBox.Location = new System.Drawing.Point(148, 50);
+            this.menuBackColorTextBox.Name = "menuBackColorTextBox";
+            this.menuBackColorTextBox.ReadOnly = true;
+            this.menuBackColorTextBox.Size = new System.Drawing.Size(136, 19);
+            this.menuBackColorTextBox.TabIndex = 73;
+            // 
+            // selectMenuBackColorButton
+            // 
+            this.selectMenuBackColorButton.Location = new System.Drawing.Point(290, 48);
+            this.selectMenuBackColorButton.Name = "selectMenuBackColorButton";
+            this.selectMenuBackColorButton.Size = new System.Drawing.Size(75, 23);
+            this.selectMenuBackColorButton.TabIndex = 72;
+            this.selectMenuBackColorButton.Text = "選択";
+            this.selectMenuBackColorButton.UseVisualStyleBackColor = true;
+            this.selectMenuBackColorButton.Click += new System.EventHandler(this.selectMenuBackColorButton_Click);
+            // 
+            // menuFontLabel
+            // 
+            this.menuFontLabel.AutoSize = true;
+            this.menuFontLabel.Location = new System.Drawing.Point(102, 15);
+            this.menuFontLabel.Name = "menuFontLabel";
+            this.menuFontLabel.Size = new System.Drawing.Size(38, 12);
+            this.menuFontLabel.TabIndex = 64;
+            this.menuFontLabel.Text = "フォント";
+            // 
+            // menuFontTextBox
+            // 
+            this.menuFontTextBox.Location = new System.Drawing.Point(148, 12);
+            this.menuFontTextBox.Name = "menuFontTextBox";
+            this.menuFontTextBox.ReadOnly = true;
+            this.menuFontTextBox.Size = new System.Drawing.Size(302, 19);
+            this.menuFontTextBox.TabIndex = 63;
+            // 
+            // selectMenuFontButton
+            // 
+            this.selectMenuFontButton.Location = new System.Drawing.Point(456, 10);
+            this.selectMenuFontButton.Name = "selectMenuFontButton";
+            this.selectMenuFontButton.Size = new System.Drawing.Size(75, 23);
+            this.selectMenuFontButton.TabIndex = 62;
+            this.selectMenuFontButton.Text = "選択";
+            this.selectMenuFontButton.UseVisualStyleBackColor = true;
+            this.selectMenuFontButton.Click += new System.EventHandler(this.selectMenuFontButton_Click);
+            // 
+            // ngReserveMenuBackColorLabel
+            // 
+            this.ngReserveMenuBackColorLabel.AutoSize = true;
+            this.ngReserveMenuBackColorLabel.Location = new System.Drawing.Point(7, 167);
+            this.ngReserveMenuBackColorLabel.Name = "ngReserveMenuBackColorLabel";
+            this.ngReserveMenuBackColorLabel.Size = new System.Drawing.Size(132, 12);
+            this.ngReserveMenuBackColorLabel.TabIndex = 85;
+            this.ngReserveMenuBackColorLabel.Text = "メニュー背景色(予約不可)";
             // 
             // SettingForm
             // 
@@ -1201,6 +1556,8 @@ namespace RockbarForEDCB
             this.edcbLinkageTabPage.ResumeLayout(false);
             this.edcbLinkageTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.portNumberNumericUpDown)).EndInit();
+            this.tunerTabPage.ResumeLayout(false);
+            this.tunerTabPage.PerformLayout();
             this.allServiceTabPage.ResumeLayout(false);
             this.allServiceTabPage.PerformLayout();
             this.favoriteServiceTabPage.ResumeLayout(false);
@@ -1211,13 +1568,12 @@ namespace RockbarForEDCB
             this.autoStartTargetGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.autoCloseMarginNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoOpenMarginNumericUpDown)).EndInit();
+            this.listViewContColorTabPage.ResumeLayout(false);
+            this.listViewContColorTabPage.PerformLayout();
             this.otherTabPage.ResumeLayout(false);
             this.otherTabPage.PerformLayout();
-            this.formBackColorPanel.ResumeLayout(false);
-            this.listBackColorPanel.ResumeLayout(false);
-            this.listBackColorPanel.PerformLayout();
-            this.tunerTabPage.ResumeLayout(false);
-            this.tunerTabPage.PerformLayout();
+            this.contextMenuFontColorTabPage.ResumeLayout(false);
+            this.contextMenuFontColorTabPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1304,25 +1660,9 @@ namespace RockbarForEDCB
         private System.Windows.Forms.Label tvtestBscsOptionExampleLabel;
         private System.Windows.Forms.CheckBox toggleVisibleTaskTrayIconClickCheckBox;
         private System.Windows.Forms.CheckBox storeTaskTrayByClosingCheckBox;
-        private System.Windows.Forms.Button selectFontButton;
         private System.Windows.Forms.FontDialog fontDialog;
-        private System.Windows.Forms.TextBox fontTextBox;
         private System.Windows.Forms.CheckBox isHorizontalSplitCheckBox;
-        private System.Windows.Forms.Label formBackColorLabel;
-        private System.Windows.Forms.TextBox formBackColorTextBox;
-        private System.Windows.Forms.Button selectFormBackColorButton;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ColorDialog colorDialog;
-        private System.Windows.Forms.Panel formBackColorPanel;
-        private System.Windows.Forms.Panel listBackColorPanel;
-        private System.Windows.Forms.Label foreColorLabel;
-        private System.Windows.Forms.Label colorPreviewLabel;
-        private System.Windows.Forms.Label selectForeColorLabel;
-        private System.Windows.Forms.TextBox foreColorTextBox;
-        private System.Windows.Forms.Button selectForeColorButton;
-        private System.Windows.Forms.Label listBackColorLabel;
-        private System.Windows.Forms.TextBox listBackColorTextBox;
-        private System.Windows.Forms.Button selectListBackColorButton;
         private System.Windows.Forms.TabPage tunerTabPage;
         private System.Windows.Forms.ListView tunerNameListView;
         private System.Windows.Forms.ColumnHeader tunerNameTunerIdColumnHeader;
@@ -1333,5 +1673,50 @@ namespace RockbarForEDCB
         private System.Windows.Forms.Label tunerNameNoteLabel;
         private System.Windows.Forms.Label tunerNameLabel;
         private System.Windows.Forms.ColumnHeader tunerNameMarkColumnHeader;
+        private System.Windows.Forms.TabPage listViewContColorTabPage;
+        private System.Windows.Forms.Label previewLabel;
+        private System.Windows.Forms.Label fontLabel;
+        private System.Windows.Forms.TextBox fontTextBox;
+        private System.Windows.Forms.Button selectFontButton;
+        private System.Windows.Forms.Label ngReserveListBackColorLabel;
+        private System.Windows.Forms.TextBox ngReserveListBackColorTextBox;
+        private System.Windows.Forms.Button selectNgReserveListBackColorButton;
+        private System.Windows.Forms.Label partialReserveListBackColorLabel;
+        private System.Windows.Forms.TextBox partialReserveListBackColorTextBox;
+        private System.Windows.Forms.Button selectPartialReserveListBackColorButton;
+        private System.Windows.Forms.Label okReserveListBackColorLabel;
+        private System.Windows.Forms.TextBox okReserveListBackColorTextBox;
+        private System.Windows.Forms.Button selectOkReserveListBackColorButton;
+        private System.Windows.Forms.ListView previewListView;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Label foreColorLabel;
+        private System.Windows.Forms.TextBox foreColorTextBox;
+        private System.Windows.Forms.Button selectForeColorButton;
+        private System.Windows.Forms.Label listBackColorLabel;
+        private System.Windows.Forms.TextBox listBackColorTextBox;
+        private System.Windows.Forms.Button selectListBackColorButton;
+        private System.Windows.Forms.Panel previewFormPanel;
+        private System.Windows.Forms.Label formBackColorLabel;
+        private System.Windows.Forms.TextBox formBackColorTextBox;
+        private System.Windows.Forms.Button selectFormBackColorButton;
+        private System.Windows.Forms.TabPage contextMenuFontColorTabPage;
+        private System.Windows.Forms.Label ngReserveMenuBackColorLabel;
+        private System.Windows.Forms.TextBox ngReserveMenuBackColorTextBox;
+        private System.Windows.Forms.Button selectNgReserveMenuBackColorButton;
+        private System.Windows.Forms.Label partialReserveMenuBackColorLabel;
+        private System.Windows.Forms.TextBox partialReserveMenuBackColorTextBox;
+        private System.Windows.Forms.Button selectPartialReserveMenuBackColorButton;
+        private System.Windows.Forms.Label okReserveMenuBackColorLabel;
+        private System.Windows.Forms.TextBox okReserveMenuBackColorTextBox;
+        private System.Windows.Forms.Button selectOkReserveMenuBackColorButton;
+        private System.Windows.Forms.ListView previewMenuListView;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label menuBackColorLabel;
+        private System.Windows.Forms.TextBox menuBackColorTextBox;
+        private System.Windows.Forms.Button selectMenuBackColorButton;
+        private System.Windows.Forms.Label menuFontLabel;
+        private System.Windows.Forms.TextBox menuFontTextBox;
+        private System.Windows.Forms.Button selectMenuFontButton;
     }
 }

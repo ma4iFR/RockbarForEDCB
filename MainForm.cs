@@ -56,7 +56,15 @@ namespace RockbarForEDCB
         // 色の設定情報(設定情報から変数にロードしたもの)
         private Color formBackColor;
         private Color listBackColor;
+        private Color okReserveListBackColor;
+        private Color partialReserveListBackColor;
+        private Color ngReserveListBackColor;
         private Color foreColor;
+
+        private Color menuBackColor;
+        private Color okReserveMenuBackColor;
+        private Color partialReserveMenuBackColor;
+        private Color ngReserveMenuBackColor;
 
         /// <summary>
         /// コンストラクタ
@@ -211,10 +219,11 @@ namespace RockbarForEDCB
             // フォント
             TypeConverter fontConverter = TypeDescriptor.GetConverter(typeof(Font));
             Font font = (Font) fontConverter.ConvertFromString(rockbarSetting.Font);
+            Font menuFont = (Font)fontConverter.ConvertFromString(rockbarSetting.MenuFont);
 
             serviceListView.Font = font;
             tunerListView.Font = font;
-            listContextMenuStrip.Font = font;
+            listContextMenuStrip.Font = menuFont;
 
             // フォント設定時にチャンネル一覧の2, 3列目の幅を設定(以降固定)
             // applySetting後に必ずServiceListはクリアされるため、1回2, 3列目だけのダミーデータを追加して列幅調整する
@@ -240,15 +249,25 @@ namespace RockbarForEDCB
             TypeConverter colorConverter = TypeDescriptor.GetConverter(typeof(Color));
             this.formBackColor = (Color)colorConverter.ConvertFromString(rockbarSetting.FormBackColor);
             this.listBackColor = (Color)colorConverter.ConvertFromString(rockbarSetting.ListBackColor);
+            this.okReserveListBackColor = (Color)colorConverter.ConvertFromString(rockbarSetting.OkReserveListBackColor);
+            this.partialReserveListBackColor = (Color)colorConverter.ConvertFromString(rockbarSetting.PartialReserveListBackColor);
+            this.ngReserveListBackColor = (Color)colorConverter.ConvertFromString(rockbarSetting.NgReserveListBackColor);
             this.foreColor = (Color)colorConverter.ConvertFromString(rockbarSetting.ForeColor);
 
             this.BackColor = this.formBackColor;
+
+            this.menuBackColor = (Color)colorConverter.ConvertFromString(rockbarSetting.MenuBackColor);
+            this.okReserveMenuBackColor = (Color)colorConverter.ConvertFromString(rockbarSetting.OkReserveMenuBackColor);
+            this.partialReserveMenuBackColor = (Color)colorConverter.ConvertFromString(rockbarSetting.PartialReserveMenuBackColor);
+            this.ngReserveMenuBackColor = (Color)colorConverter.ConvertFromString(rockbarSetting.NgReserveMenuBackColor);
 
             serviceListView.BackColor = this.listBackColor;
             serviceListView.ForeColor = this.foreColor;
 
             tunerListView.BackColor = this.listBackColor;
             tunerListView.ForeColor = this.foreColor;
+
+            listContextMenuStrip.BackColor = this.menuBackColor;
         }
 
         /// <summary>
@@ -270,8 +289,13 @@ namespace RockbarForEDCB
                 reserveMap.Clear();
                 foreach (ReserveData reserveData in reserveDatas)
                 {
-                    // TSID + SID + EventID → 予約一覧
-                    reserveMap.Add(RockbarUtility.GetKey(reserveData.TransportStreamID, reserveData.ServiceID, reserveData.EventID), reserveData);
+                    // TSID + SID + EventID → 予約情報
+                    string tsidSidEventIdKey = RockbarUtility.GetKey(reserveData.TransportStreamID, reserveData.ServiceID, reserveData.EventID);
+
+                    if (! reserveMap.ContainsKey(tsidSidEventIdKey))
+                    {
+                        reserveMap.Add(tsidSidEventIdKey, reserveData);
+                    }
                 }
 
                 // 番組情報一覧取得
@@ -284,12 +308,22 @@ namespace RockbarForEDCB
                 foreach (EpgServiceEventInfo service in serviceEvents)
                 {
                     // TSID + SID → サービス一覧(serviceが番組情報を保持している)
-                    serviceMap.Add(RockbarUtility.GetKey(service.serviceInfo.TSID, service.serviceInfo.SID), service);
+                    string tsidSidKey = RockbarUtility.GetKey(service.serviceInfo.TSID, service.serviceInfo.SID);
+
+                    if (! serviceMap.ContainsKey(tsidSidKey))
+                    {
+                        serviceMap.Add(tsidSidKey, service);
+                    }
 
                     // TSID + SID + EventID → 番組情報
                     foreach (EpgEventInfo ev in service.eventList)
                     {
-                        allEventMap.Add(RockbarUtility.GetKey(ev.transport_stream_id, ev.service_id, ev.event_id), ev);
+                        string tsidSidEventIdKey = RockbarUtility.GetKey(ev.transport_stream_id, ev.service_id, ev.event_id);
+
+                        if (! allEventMap.ContainsKey(tsidSidEventIdKey))
+                        {
+                            allEventMap.Add(tsidSidEventIdKey, ev);
+                        }
                     }
                 }
 
@@ -442,13 +476,13 @@ namespace RockbarForEDCB
                                 item.BackColor = this.listBackColor;
                                 break;
                             case ReserveStatus.OK:
-                                item.BackColor = Color.DarkSlateGray;
+                                item.BackColor = this.okReserveListBackColor;
                                 break;
                             case ReserveStatus.PARTIAL:
-                                item.BackColor = Color.FromArgb(160, 160, 0);
+                                item.BackColor = this.partialReserveListBackColor;
                                 break;
                             case ReserveStatus.NG:
-                                item.BackColor = Color.Red;
+                                item.BackColor = this.ngReserveListBackColor;
                                 break;
                         }
                     }
@@ -491,13 +525,13 @@ namespace RockbarForEDCB
                 // 直近30件に限らず、将来変な予約がある場合警告として色を変える
                 if (reserves.Count(x => x.OverlapMode == 1) > 0)
                 {
-                    // 一部録画に1件でも予約が入っている場合、黃背景色で警告
-                    item.BackColor = Color.FromArgb(160, 160, 0);
+                    // 一部予約に1件でも予約が入っている場合、黃背景色で警告
+                    item.BackColor = this.partialReserveListBackColor;
                 }
                 else if (reserves.Count(x => x.OverlapMode == 2) > 0)
                 {
                     // TU不足に1件でも予約が入っている場合、赤背景色で警告
-                    item.BackColor = Color.Red;
+                    item.BackColor = this.ngReserveListBackColor;
                 }
                 else
                 {
@@ -589,14 +623,14 @@ namespace RockbarForEDCB
                 case ReserveStatus.OK:
                     if (!isTuner)
                     {
-                        item.BackColor = Color.FromArgb(192, 192, 225);
+                        item.BackColor = this.okReserveMenuBackColor;
                     }
                     break;
                 case ReserveStatus.PARTIAL:
-                    item.BackColor = Color.Yellow;
+                    item.BackColor = this.partialReserveMenuBackColor;
                     break;
                 case ReserveStatus.NG:
-                    item.BackColor = Color.Red;
+                    item.BackColor = this.ngReserveMenuBackColor;
                     break;
             }
 
@@ -659,7 +693,6 @@ namespace RockbarForEDCB
                         item.DropDownItems.Add(str);
                         item.DropDownItems[item.DropDownItems.Count - 1].Enabled = false;
                     }
-
                 }
 
                 item.DropDownItems.Add(new ToolStripSeparator());
@@ -1151,7 +1184,7 @@ namespace RockbarForEDCB
         /// </summary>
         /// <param name="sender">イベントソース</param>
         /// <param name="e">イベントパラメータ</param>
-        private void notifyIcon_MouseClick(object sender, MouseEventArgs e)
+        private void notifyIcon_MouseDown(object sender, MouseEventArgs e)
         {
             if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
             {
@@ -1174,7 +1207,7 @@ namespace RockbarForEDCB
                     this.Activate();
 
                     // オプションによりタスクトレイアイコン表示を切り替え
-                    if (! rockbarSetting.ShowTaskTrayIcon)
+                    if (!rockbarSetting.ShowTaskTrayIcon)
                     {
                         notifyIcon.Visible = false;
                     }
@@ -1205,6 +1238,5 @@ namespace RockbarForEDCB
             adjustListViewColumns(serviceListView);
             adjustListViewColumns(tunerListView);
         }
-
     }
 }

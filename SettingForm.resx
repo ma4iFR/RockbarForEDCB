@@ -121,7 +121,7 @@
     <value>それぞれ、{ONID} {TSID} {SID} {EID}を番組情報で置換します。
 
 (例: EMWUI用)
-http://localhost:5510/epginfo.html?onid={ONID}&amp;&amp;tsid={TSID}&amp;&amp;sid={SID}&amp;&amp;eid={EID}
+http://localhost:5510/EMWUI/epginfo.html?onid={ONID}&amp;&amp;tsid={TSID}&amp;&amp;sid={SID}&amp;&amp;eid={EID}
 
 (例: legacy用)
 http://localhost:5510/legacy/epginfo.html?{ONID}-{TSID}-{SID}-{EID}

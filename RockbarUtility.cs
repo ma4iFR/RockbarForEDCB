@@ -34,9 +34,9 @@ namespace RockbarForEDCB
         NONE,
         // 正常予約
         OK,
-        // 部分録画
+        // 部分予約
         PARTIAL,
-        // 録画不可(チューナー不足)
+        // 予約不可(チューナー不足)
         NG,
         // 番組消失
         DISAPPEARED,
@@ -64,18 +64,26 @@ namespace RockbarForEDCB
 
             this.PortNumber = 4510;
             this.UseWebLink = true;
-            this.WebLinkUrl = "http://localhost:5510/epginfo.html?onid={ONID}&tsid={TSID}&sid={SID}&eid={EID}";
+            this.WebLinkUrl = "http://localhost:5510/EMWUI/epginfo.html?onid={ONID}&tsid={TSID}&sid={SID}&eid={EID}";
             this.AutoOpenMargin = 15;
             this.AutoCloseMargin = 5;
             this.ShowTaskTrayIcon = true;
 
             TypeConverter fontConverter = TypeDescriptor.GetConverter(typeof(Font));
             this.Font = fontConverter.ConvertToString(SystemFonts.DefaultFont);
+            this.MenuFont = fontConverter.ConvertToString(SystemFonts.DefaultFont);
 
             TypeConverter colorConverter = TypeDescriptor.GetConverter(typeof(Color));
+            this.ForeColor = colorConverter.ConvertToString(Color.FromArgb(25, 250, 140));
             this.FormBackColor = colorConverter.ConvertToString(Color.FromArgb(163, 216, 232));
             this.ListBackColor = colorConverter.ConvertToString(Color.FromArgb(40, 40, 40));
-            this.ForeColor = colorConverter.ConvertToString(Color.FromArgb(25, 250, 140));
+            this.OkReserveListBackColor = colorConverter.ConvertToString(Color.DarkSlateGray);
+            this.PartialReserveListBackColor = colorConverter.ConvertToString(Color.FromArgb(160, 160, 0));
+            this.NgReserveListBackColor = colorConverter.ConvertToString(Color.Red);
+            this.MenuBackColor = colorConverter.ConvertToString(SystemColors.ControlLight);
+            this.OkReserveMenuBackColor = colorConverter.ConvertToString(Color.FromArgb(192, 192, 225));
+            this.PartialReserveMenuBackColor = colorConverter.ConvertToString(Color.Yellow);
+            this.NgReserveMenuBackColor = colorConverter.ConvertToString(Color.Red);
 
             BonDriverNameToTunerName = new Dictionary<string, string>();
         }
@@ -134,10 +142,26 @@ namespace RockbarForEDCB
         public string Font { get; set; }
         // フォーム背景色(シリアライズしたもの)
         public string FormBackColor { get; set; }
-        // リスト背景色(シリアライズしたもの)
-        public string ListBackColor { get; set; }
         // 文字色(シリアライズしたもの)
         public string ForeColor { get; set; }
+        // リスト背景色(シリアライズしたもの)
+        public string ListBackColor { get; set; }
+        // 予約リスト背景色(シリアライズしたもの)
+        public string OkReserveListBackColor { get; set; }
+        // 部分予約リスト背景色(シリアライズしたもの)
+        public string PartialReserveListBackColor { get; set; }
+        // 予約不可リスト背景色(シリアライズしたもの)
+        public string NgReserveListBackColor { get; set; }
+        // メニューフォント(シリアライズしたもの)
+        public string MenuFont { get; set; }
+        // メニュー背景色(シリアライズしたもの)
+        public string MenuBackColor { get; set; }
+        // 予約メニュー背景色(シリアライズしたもの)
+        public string OkReserveMenuBackColor { get; set; }
+        // 部分予約メニュー背景色(シリアライズしたもの)
+        public string PartialReserveMenuBackColor { get; set; }
+        // 予約不可メニュー背景色(シリアライズしたもの)
+        public string NgReserveMenuBackColor { get; set; }
         // BonDriver名→チューナー名マッピング
         public Dictionary<string, string> BonDriverNameToTunerName { get; set; }
     }

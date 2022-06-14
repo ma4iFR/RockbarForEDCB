@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "test",
             "test",
             "test"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.serviceListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -85,12 +85,12 @@
             this.serviceListView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(250)))), ((int)(((byte)(140)))));
             this.serviceListView.FullRowSelect = true;
             this.serviceListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.serviceListView.HideSelection = false;
             this.serviceListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem19,
-            listViewItem20,
-            listViewItem21});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
             this.serviceListView.Location = new System.Drawing.Point(0, 0);
+            this.serviceListView.MultiSelect = false;
             this.serviceListView.Name = "serviceListView";
             this.serviceListView.ShowItemToolTips = true;
             this.serviceListView.Size = new System.Drawing.Size(467, 194);
@@ -207,8 +207,8 @@
             this.tunerListView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(250)))), ((int)(((byte)(140)))));
             this.tunerListView.FullRowSelect = true;
             this.tunerListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.tunerListView.HideSelection = false;
             this.tunerListView.Location = new System.Drawing.Point(0, 0);
+            this.tunerListView.MultiSelect = false;
             this.tunerListView.Name = "tunerListView";
             this.tunerListView.ShowItemToolTips = true;
             this.tunerListView.Size = new System.Drawing.Size(260, 194);
@@ -286,7 +286,7 @@
             this.notifyIcon.ContextMenuStrip = this.taskTrayContextMenuStrip;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "Rockbar for EDCB";
-            this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
+            this.notifyIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDown);
             // 
             // taskTrayContextMenuStrip
             // 
