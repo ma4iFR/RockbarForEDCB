@@ -81,7 +81,7 @@ TCP/IPで通信する場合は「EDCBとの通信にTCP/IPを使用する」を�
 番組詳細リンクを使用する場合は、「Web番組詳細へのリンクを表示」をチェックして「Web番組詳細URL」に置換前URLを入れてください。
 
 (例: EMWUI用)
-http://localhost:5510/epginfo.html?onid={ONID}&tsid={TSID}&sid={SID}&eid={EID}
+http://localhost:5510/EMWUI/epginfo.html?onid={ONID}&tsid={TSID}&sid={SID}&eid={EID}
 
 (例: legacy用)
 http://localhost:5510/legacy/epginfo.html?{ONID}-{TSID}-{SID}-{EID}
